@@ -1,0 +1,9 @@
+<ul>
+	<li *ngFor="let event of events$ | async">
+        {{ event.name }}
+    </li>
+</ul>
+
+<button pButton type="button" icon="pi pi-check" label="Click" (click)="createEvent()"></button>
+
+<router-outlet></router-outlet>
