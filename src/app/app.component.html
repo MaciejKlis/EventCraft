@@ -1,9 +1,6 @@
-<ul>
-	<li *ngFor="let event of events$ | async">
-        {{ event.name }}
-    </li>
-</ul>
-
-<button pButton type="button" icon="pi pi-check" label="Click" (click)="createEvent()"></button>
-
-<router-outlet></router-outlet>
+<app-navbar></app-navbar>
+<div class="p-grid">
+	<div class="p-offset-2 p-col-8">
+		<router-outlet></router-outlet>
+	</div>
+</div>

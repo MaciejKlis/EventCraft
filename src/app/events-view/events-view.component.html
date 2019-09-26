@@ -1,0 +1,12 @@
+<ul>
+    <li *ngFor="let event of events$ | async">
+        <h3>Name: {{ event.name }}</h3>
+        <h4>Description:</h4>
+        <p>{{ event.description }}</p>
+        <span>Organizer: {{ event.organizer }}</span><br>
+        <span>Type: {{ event.type }}</span><br>
+        <span>start at: {{ event.startAt | date:"MM/dd/yy   HH" }}:00</span><br>
+        <span>end at: {{ event.endAt | date:"MM/dd/yy   HH" }}:00</span><br>
+        <img src="{{ event.imageUrl }}" alt="">
+    </li> 
+</ul>
