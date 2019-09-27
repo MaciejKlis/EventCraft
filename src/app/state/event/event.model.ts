@@ -6,8 +6,8 @@ export interface Event {
     description: string;
     organizer: string;
     localization: string;
-    startAt: Data;
-    endAt: Data;
+    startAt: Date;
+    endAt: Date;
     type: string;
     imageUrl: string;
 }
