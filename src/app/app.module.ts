@@ -16,7 +16,6 @@ import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectButtonModule } from 'primeng/selectbutton';
 
-
 @NgModule({
   declarations: [
     AppComponent,
