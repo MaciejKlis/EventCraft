@@ -15,13 +15,17 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { SingleEventViewComponent } from './single-event-view/single-event-view.component';
+import { SingleEventEditComponent } from './single-event-edit/single-event-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventCreatorComponent,
     NavbarComponent,
-    EventsViewComponent
+    EventsViewComponent,
+    SingleEventViewComponent,
+    SingleEventEditComponent
   ],
   imports: [
     BrowserModule,
