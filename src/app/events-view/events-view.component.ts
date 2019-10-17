@@ -3,6 +3,7 @@ import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { EventState } from '../state/event/event.state';
 import { Event } from '../state/event/event.model';
+import { ButtonModule } from 'primeng/button';
 
 
 @Component({
@@ -18,5 +19,4 @@ export class EventsViewComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
