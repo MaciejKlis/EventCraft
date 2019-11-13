@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Event, EventStateModel } from './state/event/event.model';
 import { Store } from '@ngxs/store';
-import { CreateEvent } from './state/event/event.actions';
-import { EventFactory } from './event-factory/eventFactory';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +9,11 @@ import { EventFactory } from './event-factory/eventFactory';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private store: Store
-  ){}
+  public events$: Observable<Event[]>;
+
+  constructor(private store: Store){}
 
   ngOnInit() {
-    for(let i = 0; i < 5; i++){
-      this.store.dispatch(
-        new CreateEvent(EventFactory.create())
-      )
-    }
+    
   }
 }

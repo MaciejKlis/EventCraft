@@ -9,13 +9,13 @@ import { EventFactory } from '../event-factory/eventFactory';
   styleUrls: ['./event-creator.component.scss']
 })
 
-export class EventCreatorComponent implements OnInit {
+export class EventCreatorComponent implements OnInit{
   constructor(
     private store: Store
   ) {}
 
   types = [
-    {label: 'Conference', value: 'Conference', icon: 'pi pi-comments'},
+    {label: 'Conference', value: 'conference', icon: 'pi pi-comments'},
     {label: 'Golf Event', value: 'golfEvents', icon: 'pi pi-shopping-cart'},
     {label: 'Theme Party', value: 'themeParties', icon: 'pi pi-eye'},
     {label: 'Wedding', value: 'wedding', icon: 'pi pi-video'},
@@ -36,7 +36,7 @@ export class EventCreatorComponent implements OnInit {
   createEvent(){
     this.store.dispatch(
       new CreateEvent({ 
-        id: Math.floor(Math.random() * 100000000000),
+        id: "dasdas",
         name: this.eventName,
         description: this.eventDescription,
         organizer: this.eventOrganizer,
@@ -48,7 +48,6 @@ export class EventCreatorComponent implements OnInit {
       })  
     );
   }
-
 
   createRandom(){
     this.store.dispatch(

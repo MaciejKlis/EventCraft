@@ -11,8 +11,10 @@
             <a [routerLink]="['/event', event.id]" routerLinkActive="active">
                 <button pButton type="button" label="View" ></button>
             </a>
-            <button pButton type="button" label="Edit" ></button>
-            <button pButton type="button" label="Remove" ></button>
+            <a [routerLink]="['/event/edit', event.id]" routerLinkActive="active">
+                <button pButton type="button" label="Edit"></button>
+            </a>
+            <button pButton type="button" label="Remove" (click)="removeEvent(event.id)"></button>
         </div>
     </li> 
 </ul>
