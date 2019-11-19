@@ -30,7 +30,7 @@ import { EventsService } from './state/event/events.service'
     SingleEventEditComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     ButtonModule,
     InputTextModule,

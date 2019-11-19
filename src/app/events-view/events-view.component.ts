@@ -10,7 +10,7 @@ import { Event } from '../state/event/event.model';
   templateUrl: './events-view.component.html',
   styleUrls: ['./events-view.component.scss']
 })
-export class EventsViewComponent implements OnInit {
+export class EventsViewComponent implements OnInit, OnDestroy {
   @Select(EventState.events) events$: Observable<Event[]>;
 
   constructor(private store: Store) { }

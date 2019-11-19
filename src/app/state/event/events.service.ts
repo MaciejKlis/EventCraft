@@ -11,8 +11,10 @@ export class EventsService {
 
   constructor(private http: HttpClient) { }
 
+  private readonly apiUrl = 'http://localhost:4200/api/events/'
+
   public getAllEvents(){
-    return this.http.get<Event[]>('http://localhost:3000/events')
+    return this.http.get<Event[]>(this.apiUrl)
       .pipe(map( events  => events.map(event => (
         {
           id: event.id,
@@ -29,18 +31,18 @@ export class EventsService {
   }
 
   public insertEvent(event: Event){
-    return this.http.post<Event[]>('http://localhost:3000/events', event)
+    return this.http.post<Event[]>(this.apiUrl, event)
   }
 
   public getEventById(id: string){
-    return this.http.get<Event>('http://localhost:3000/events/' + id)
+    return this.http.get<Event>(this.apiUrl + id)
   }
 
   public removeEventById(id: string){
-    return this.http.delete<Event>('http://localhost:3000/events/' + id)
+    return this.http.delete<Event>(this.apiUrl + id)
   }
 
   public updateElementById(event: Event){
-    return this.http.patch<Event>('http://localhost:3000/events/' + event.id, event)
+    return this.http.patch<Event>(this.apiUrl + event.id, event)
   }
 }
