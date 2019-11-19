@@ -1,0 +1,35 @@
+br {
+    display: none;
+}
+
+h3 { 
+   margin: 0; 
+}
+
+.ui-float-label {
+    margin: 25px 0 10px;
+    display: flex;
+
+    input {
+        width: 100%;
+    }
+
+    textarea {
+        width: 100%;
+    }
+}
+
+p-calendar {
+    width: 100%;
+}
+
+p-selectbutton {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}

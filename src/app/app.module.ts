@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { FormsModule }    from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SingleEventViewComponent } from './single-event-view/single-event-view.component';
 import { SingleEventEditComponent } from './single-event-edit/single-event-edit.component';
+import { EventsService } from './state/event/events.service'
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { SingleEventEditComponent } from './single-event-edit/single-event-edit.
     SingleEventEditComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     ButtonModule,
     InputTextModule,
@@ -36,12 +38,14 @@ import { SingleEventEditComponent } from './single-event-edit/single-event-edit.
     CalendarModule,
     FormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     SelectButtonModule,
+
     NgxsModule.forRoot([
       EventState
     ])
   ],
-  providers: [],
+  providers: [EventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

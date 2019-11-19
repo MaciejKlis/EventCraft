@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EventsViewComponent } from './events-view.component';
 
 describe('EventsViewComponent', () => {

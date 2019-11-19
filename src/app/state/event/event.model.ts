@@ -1,7 +1,5 @@
-import { Data } from '@angular/router';
-
 export interface Event {
-    id: number;
+    id: string;
     name: string;
     description: string;
     organizer: string;
@@ -14,4 +12,12 @@ export interface Event {
 
 export interface EventStateModel {
     events: Event[];
+}
+
+export enum EventType {
+    CONFERENCE = 'CONFERENCE',
+    GOLF_EVENTS = 'GOLF_EVENTS',
+    THEME_PARTIES = 'THEME_PARTIES',
+    WEDDING = 'WEDDING',
+    BIRTHDAY = 'BIRTHDAY'
 }

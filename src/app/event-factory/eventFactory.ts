@@ -1,7 +1,7 @@
 import { Event } from '../state/event/event.model';
 
 export class EventFactory{
-	id: number;
+	id: string;
 	name: string;
 	description: string;
 	organizer: string;
@@ -57,11 +57,11 @@ export class EventFactory{
 		]
 	
 		let randomTypes = [
-			'Conference',
-			'Golf Event',
-			'Theme Party',
-			'Wedding',
-			'Birthday',
+			'conference',
+			'golfEvents',
+			'themeParties',
+			'wedding',
+			'birthday',
 		]
 		
 		let randomImgs = [
@@ -81,7 +81,7 @@ export class EventFactory{
 		let endAt = randomDate(startAt, new Date(2021, 1 , 14));
 	
 		return{
-			id: Math.floor(Math.random() * 100000000000),
+			id: "Be changed",
 			name: randomName[Math.floor(Math.random()*randomName.length)],
 			description: randomDescriptions[Math.floor(Math.random()*randomDescriptions.length)],
 			organizer: randomOrganizer[Math.floor(Math.random()*randomOrganizer.length)],

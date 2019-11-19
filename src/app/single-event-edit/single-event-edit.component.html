@@ -1,1 +1,42 @@
-<p>single-event-edit works!</p>
+<div class="p-offset-2 p-col-8">
+    <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="event.name">
+      <label for="float-input">Event title</label>
+    </span>
+    <span class="ui-float-label">
+      <textarea id="float-input" rows="5" cols="30" pInputTextarea [(ngModel)]="event.description"></textarea>
+      <label for="float-input">Event description</label>
+    </span>
+    <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="event.organizer">
+      <label for="float-input">Event organizer</label>
+    </span>
+    <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="event.localization">
+      <label for="float-input">Localization</label>
+    </span>
+    <br>
+  
+      <span class="ui-float-label">
+          <p-calendar [(ngModel)]="event.startAt" [showIcon]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'calc(100% - 33px)'}"></p-calendar>
+          <label for="float-input">Event start at:</label>
+      </span>
+  
+    <br>
+    <span class="ui-float-label">
+      <p-calendar [(ngModel)]="event.endAt" [showIcon]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'calc(100% - 33px)'}"></p-calendar>
+      <label for="float-input">Event end at:</label>
+    </span>
+    <br>
+    <h3>Category</h3>
+    <p-selectButton [options]="types" [(ngModel)]="event.type"></p-selectButton>
+    <br>
+    <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="event.imageUrl">
+      <label for="float-input">Photo url</label>
+    </span>
+  
+    <div class="button-container">
+      <button pButton type="button" icon="pi pi-cloud-upload" label="Update event" (click)="updateEvent()"></button>
+    </div>
+  </div>

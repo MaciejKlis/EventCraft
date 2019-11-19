@@ -4,6 +4,7 @@ import { Select } from '@ngxs/store';
 import { EventState } from '../state/event/event.state';
 import { Event } from '../state/event/event.model';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-single-event-view',
@@ -18,17 +19,16 @@ export class SingleEventViewComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  id:number
+  id: string;
   event: Event;
 
   ngOnInit() {
-    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.id = this.route.snapshot.paramMap.get('id');
+    
     this.events$.subscribe(events => {
       events.forEach(event => {
         if(event.id == this.id) this.event = event;
       })
     })
-
-    console.log(this.event)
   }
 }
