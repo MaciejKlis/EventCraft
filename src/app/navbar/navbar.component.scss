@@ -1,16 +1,22 @@
 nav{
+    position: absolute;
+    z-index: 30;
     height: 60px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(40, 95, 95, 0.13);
+    //background: rgba(40, 95, 95, 0.13);
 
     a {
         margin: 0 10px;
+        color: #fff;
+        text-shadow: #000 3px 3px 3px;
+        font-size: 1.2rem;
     }
 
     span {
-        color: #007ad9;
+        color: #fff;
         cursor: pointer;
     }
 }
