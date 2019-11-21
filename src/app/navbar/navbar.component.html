@@ -1,5 +1,13 @@
 <nav>
-    <a routerLink="/landing" routerLinkActive="active">Home</a>
-    <a routerLink="/" routerLinkActive="active">Search events</a>
-    <a routerLink="/create" routerLinkActive="active">Create event</a>
+    <div class="logoBox spacer">
+        <a routerLink="/landing" routerLinkActive="active">
+            <img src="../../assets/logo.svg" alt="">
+        </a>
+    </div>
+    <div class="navBox">
+        <a class="navBox__anchor" routerLink="/landing" routerLinkActive="active">Home</a>
+        <a class="navBox__anchor" routerLink="/" routerLinkActive="active">Search events</a>
+        <a class="navBox__anchor" routerLink="/create" routerLinkActive="active">Create event</a>
+    </div>
+    <div class="spacer"></div>
 </nav>
