@@ -1,4 +1,37 @@
-<ul class="event-list">
+<div class="container">
+    <div class="serachTool">
+        <div class="serachTool__half">
+
+        </div>
+        <div class="serachTool__half"></div>
+    </div>
+    <div class="resultContainer">
+
+        <div *ngFor="let event of events$ | async" class="eventView">
+            <div class="eventView__imageBox">
+                <img src="{{ event.imageUrl }}" alt="">
+            </div>
+            <div class="eventView__body">
+                <h2 class="eventView__title">{{ event.name }}</h2>
+                <span class="eventView__details">Localization:  {{ event.localization }}</span>
+                <span class="eventView__details">Start At: {{ event.startAt | date: 'short' }}</span>
+                <span class="eventView__details">End At: {{ event.endAt | date: 'short' }}</span>
+            </div>
+            <div class="eventView__footer">
+                <a [routerLink]="['/event', event.id]" routerLinkActive="active">
+                    <button pButton type="button" label="View" ></button>
+                </a>
+                <a [routerLink]="['/event/edit', event.id]" routerLinkActive="active">
+                    <button pButton type="button" label="Edit"></button>
+                </a>
+                <button pButton type="button" label="Remove" (click)="removeEvent(event.id)"></button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- <ul class="event-list">
     <li *ngFor="let event of events$ | async" class="event-list__single">
         <div class="event-list__imageBox">
             <img src="{{ event.imageUrl }}" alt="" class="event-list__image">
@@ -17,4 +50,4 @@
             <button pButton type="button" label="Remove" (click)="removeEvent(event.id)"></button>
         </div>
     </li> 
-</ul>
+</ul> -->

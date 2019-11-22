@@ -4,15 +4,21 @@ import { EventCreatorComponent } from './event-creator/event-creator.component';
 import { EventsViewComponent } from './events-view/events-view.component';
 import { SingleEventViewComponent } from './single-event-view/single-event-view.component';
 import { SingleEventEditComponent } from './single-event-edit/single-event-edit.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+
 
 const routes: Routes = [
-  { 
-    path: 'create', 
-    component: EventCreatorComponent 
-  },
   {
     path: '',
     component: EventsViewComponent
+  },
+  {
+    path: 'landing',
+    component: LandingPageComponent
+  },
+  { 
+    path: 'create', 
+    component: EventCreatorComponent 
   },
   {
     path: 'event/:id',
@@ -21,7 +27,7 @@ const routes: Routes = [
   {
     path: 'event/edit/:id',
     component: SingleEventEditComponent
-  }
+  },
 ];
 
 @NgModule({

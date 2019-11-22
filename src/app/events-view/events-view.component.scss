@@ -1,41 +1,84 @@
-.event-list {
+.serachTool {
+    background: #1C1C1C;
+    height: 150px;
+    width: 100%;
     display: flex;
-    list-style-type: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0;
-    background: #efefef;
 
-    &__single {
-        padding: 5px;
-        width: 300px;
-        height: 400px;
-        margin: 10px;
-        background: #fff;
+    &__half {
+        flex-grow: 1;
+        flex-basis: 0;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.resultContainer {
+    max-width: 1179px;
+    min-height: calc(100vh - 210px);
+    margin: 0 auto;
+    background: url('../../assets/argyle.png');
+    padding: 60px 34px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.eventView {
+    margin: 0 21px 40px 20px;
+    position: relative;
+    width: 329px;
+    height: 467px;
+    background: rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+
+    &__imageBox {
+        padding: 10px 10px 0 10px;
+        width: 329px;
+        height: 187px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__body {
+        padding: 0 14px;
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
     }
 
-    &__imageBox{
-        width: 290px;
-        height: 200px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
+    &__title {
+        display: block;
+        font-family: Volkhov;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 28px;
+        text-transform: capitalize;
+        text-align: center;
     }
 
-    &__image{
-        width: 290px;
-        height: 200px;
-        object-fit: cover;
+    &__details {
+        font-family: Volkhov;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 21px;
+        text-transform: capitalize;
+        margin: 10px 0;
     }
 
-    &__body {
-        flex-grow: 1;
-    }
-
-    &__action {
+    &__footer {
+        width: 100%;
+        background: #fff;
         display: flex;
         justify-content: space-around;
+        padding: 4px;
     }
-} 
+}

@@ -19,6 +19,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { SingleEventViewComponent } from './single-event-view/single-event-view.component';
 import { SingleEventEditComponent } from './single-event-edit/single-event-edit.component';
 import { EventsService } from './state/event/events.service'
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EventsService } from './state/event/events.service'
     NavbarComponent,
     EventsViewComponent,
     SingleEventViewComponent,
-    SingleEventEditComponent
+    SingleEventEditComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
