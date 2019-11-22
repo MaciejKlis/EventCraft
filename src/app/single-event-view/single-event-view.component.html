@@ -1,8 +1,34 @@
-<div>
-    <span><b>Title:</b> {{ event.name }}</span>
-    <span><b>Description:</b> {{ event.description }}</span>
-    <span><b>Localization:</b> {{ event.localization }}</span>
-    <span><b>Start at:</b> {{ event.startAt }}</span>
-    <span><b>End at:</b> {{ event.endAt }}</span>
-    <img src="{{ event.imageUrl }}" alt="">
+<!-- <div>
+    <span><b>Title:</b> </span>
+    <span><b>Description:</b> </span>
+    <span><b>Localization:</b> </span>
+    <span><b>Start at:</b> </span>
+    <span><b>End at:</b> </span>
+    <img src="" alt="">
+</div> -->
+
+
+<div class="container">
+    <div class="counterBox">
+        <span class="eventCounter">Time to start event 21days 23:32:12</span>
+    </div>
+    <div class="eventContainer">
+        <div class="eventTitleBox">
+            <h1 class="eventTitleBox__title">{{ event.name }}</h1>
+        </div>
+        <div class="eventMainBox">
+            <div class="eventImageBox">
+                <img src="{{ event.imageUrl }}" class="eventImageBox__image">
+            </div>
+            <div class="eventDetailsBox">
+                <span class="eventDetailsBox__details">Localization: {{ event.localization }}</span>
+                <span class="eventDetailsBox__details">Organizer: {{ event.organizer }}</span>
+                <span class="eventDetailsBox__details">Type: </span>
+                <span class="eventDetailsBox__details">Start At: {{ event.startAt }}</span>
+                <span class="eventDetailsBox__details">End At: {{ event.endAt }}</span>
+            </div>
+        </div>
+        <p class="eventDescription">{{ event.description }}</p>
+    </div>
 </div>
+
