@@ -1,48 +1,48 @@
-<div class="p-offset-2 p-col-8">
-  <span class="ui-float-label">
-    <input id="float-input" type="text" size="30" pInputText [(ngModel)]="eventName" required>
-    <label for="float-input">Event title *</label>
-  </span>
+<div class="container">
+  <div class="eventEditContainer">
+    <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="eventName" required>
+      <label for="float-input">Event title *</label>
+    </span>
 
-  <span class="ui-float-label">
-    <textarea id="float-input" rows="5" cols="30" pInputTextarea [(ngModel)]="eventDescription" required></textarea>
-    <label for="float-input">Event description *</label>
-  </span>
+    <span class="ui-float-label">
+      <textarea id="float-input" rows="5" cols="30" pInputTextarea [(ngModel)]="eventDescription" required></textarea>
+      <label for="float-input">Event description *</label>
+    </span>
+    
+    <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="eventOrganizer" required>
+      <label for="float-input">Event organizer *</label>
+    </span>
+    
+    <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="eventLocalization" required>
+      <label for="float-input">Localization *</label>
+    </span>
+    <br>
+
+    <span class="ui-float-label">
+      <p-calendar [(ngModel)]="eventStart" [showIcon]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'calc(100% - 33px)'}" ></p-calendar>
+      <label for="float-input">Event start at: *</label>
+    </span>
+    <br>
+
+    <span class="ui-float-label">
+      <p-calendar [(ngModel)]="eventEnd" [showIcon]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'calc(100% - 33px)'}"></p-calendar>
+      <label for="float-input">Event end at: *</label>
+    </span>
   
-  <span class="ui-float-label">
-    <input id="float-input" type="text" size="30" pInputText [(ngModel)]="eventOrganizer" required>
-    <label for="float-input">Event organizer *</label>
-  </span>
-  
-  <span class="ui-float-label">
-    <input id="float-input" type="text" size="30" pInputText [(ngModel)]="eventLocalization" required>
-    <label for="float-input">Localization *</label>
-  </span>
-  <br>
+    <h3 class="category">Category *</h3>
+    <p-selectButton [options]="types" [(ngModel)]="eventType"></p-selectButton>
 
-	<span class="ui-float-label">
-		<p-calendar [(ngModel)]="eventStart" [showIcon]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'calc(100% - 33px)'}" ></p-calendar>
-		<label for="float-input">Event start at: *</label>
-	</span>
-  <br>
+    <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText [(ngModel)]="eventImage">
+      <label for="float-input">Photo url *</label>
+    </span>
 
-  <span class="ui-float-label">
-    <p-calendar [(ngModel)]="eventEnd" [showIcon]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'calc(100% - 33px)'}"></p-calendar>
-    <label for="float-input">Event end at: *</label>
-  </span>
-  <br>
-
-  <h3>Category *</h3>
-  <p-selectButton [options]="types" [(ngModel)]="eventType"></p-selectButton>
-  <br>
-
-  <span class="ui-float-label">
-    <input id="float-input" type="text" size="30" pInputText [(ngModel)]="eventImage">
-    <label for="float-input">Photo url *</label>
-  </span>
-
-  <div class="button-container">
-    <button pButton type="button" icon="pi pi-plus" label="Create event" (click)="createEvent()"></button>
-    <button pButton type="button" icon="pi pi-palette" label="Generate random" (click)="createRandom()"></button>
+    <div class="button-container">
+      <button pButton type="button" icon="pi pi-plus" label="Create event" (click)="createEvent()"></button>
+      <button pButton type="button" icon="pi pi-palette" label="Generate random" (click)="createRandom()"></button>
+    </div>
   </div>
 </div>
