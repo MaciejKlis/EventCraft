@@ -89,7 +89,8 @@ export class EventFactory{
 			startAt: startAt,
 			endAt: endAt,
 			type: randomTypes[Math.floor(Math.random()*randomTypes.length)],
-			imageUrl: randomImgs[Math.floor(Math.random()*randomImgs.length)]
+			imageUrl: randomImgs[Math.floor(Math.random()*randomImgs.length)],
+			createdAt: new Date(),
 		}
 	}
 }

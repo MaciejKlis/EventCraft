@@ -1,8 +1,8 @@
 import { State, StateContext, Action, Selector, NgxsOnInit, Store } from '@ngxs/store';
 import { Event, EventStateModel } from './event.model';
-import { CreateEvent, AddExistingEvents, RemoveEvent, UpdateEvent } from './event.actions';
+import { CreateEvent, AddExistingEvents, RemoveEvent, UpdateEvent, ReorderByCreateTime } from './event.actions';
 import { EventsService } from './events.service';
-import { Observable, observable, empty } from 'rxjs';
+import { Observable, empty } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 
@@ -25,7 +25,7 @@ export class EventState implements NgxsOnInit{
     }
     
     @Action(AddExistingEvents)
-    addExistingEvents({ patchState }: StateContext<EventStateModel>, { allEvents }: AddExistingEvents) {        
+    addExistingEvents({ patchState }: StateContext<EventStateModel>, { allEvents }: AddExistingEvents) {
         patchState({
             events: [...allEvents]
         });
@@ -64,6 +64,22 @@ export class EventState implements NgxsOnInit{
         const indexOfUpdatedEvent = events.findIndex(existEvent => existEvent.id === event.id);
         events[indexOfUpdatedEvent] = event;
 
+        patchState({
+            events
+        });
+    }
+
+    @Action(ReorderByCreateTime)
+    reorderByCreateTime({getState, patchState}: StateContext<EventStateModel>, {orderType}: ReorderByCreateTime){
+        const { events } = getState();
+
+        events.sort((a, b)=>{
+            let aTimestamp = new Date(a.createdAt).getTime();
+            let bTimestamp = new Date(b.createdAt).getTime();
+
+            return orderType === "latest" ? bTimestamp - aTimestamp : aTimestamp - bTimestamp;
+        })
+        
         patchState({
             events
         });

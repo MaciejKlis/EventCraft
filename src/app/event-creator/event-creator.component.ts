@@ -45,6 +45,7 @@ export class EventCreatorComponent implements OnInit{
         endAt: this.eventEnd,
         type: this.eventType,
         imageUrl: this.eventImage,
+        createdAt: new Date,
       })  
     );
   }

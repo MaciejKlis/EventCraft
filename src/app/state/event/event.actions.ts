@@ -10,6 +10,11 @@ export class AddExistingEvents {
   constructor(public allEvents: Event[]){}
 }
 
+export class ReorderByCreateTime {
+  static readonly type = '[event] reorder by create time'
+  constructor(public orderType: string){}
+}
+
 export class RemoveEvent {
   static readonly type = '[event] remove event'
   constructor(public idEvent:string){}
