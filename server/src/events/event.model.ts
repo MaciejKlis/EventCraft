@@ -8,7 +8,8 @@ export const EventSchema = new mongoose.Schema({
   startAt: { type: Date, required: true },
   endAt: { type: Date, required: true },
   type: { type: String, required: true },
-  imageUrl: { type: String, required: true }
+  imageUrl: { type: String, required: true },
+  createdAt: {type: Date, default: Date.now }
 })
 
 export interface Event extends mongoose.Document {
@@ -21,4 +22,5 @@ export interface Event extends mongoose.Document {
   endAt: Date;
   type: string;
   imageUrl: string;
+  createdAt?: Date;
 }

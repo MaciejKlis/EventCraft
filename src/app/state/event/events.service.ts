@@ -15,8 +15,8 @@ export class EventsService {
 
   public getAllEvents(){
     return this.http.get<Event[]>(this.apiUrl)
-      .pipe(map( events  => events.map(event => (
-        {
+      .pipe(map( events  => events.map(event =>{         
+        return ({
           id: event.id,
           name: event.name,
           description: event.description,
@@ -25,9 +25,11 @@ export class EventsService {
           startAt: event.startAt,
           endAt: event.endAt,
           type: event.type,
-          imageUrl: event.imageUrl
-        } 
-      ))))
+          imageUrl: event.imageUrl,
+          createdAt: event.createdAt
+        })
+      }
+      )))
   }
 
   public insertEvent(event: Event){

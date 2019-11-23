@@ -7,8 +7,18 @@
     &__half {
         flex-grow: 1;
         flex-basis: 0;
+        display: flex;
         justify-content: center;
         align-items: center;
+
+        span {
+            font-family: Volkhov;
+            font-size: 16px;
+            line-height: 21px;
+            text-transform: capitalize;
+            color: #fff;
+            margin-right: 15px;
+        }
     }
 }
 
@@ -56,8 +66,6 @@
     &__title {
         display: block;
         font-family: Volkhov;
-        font-style: normal;
-        font-weight: normal;
         font-size: 22px;
         line-height: 28px;
         text-transform: capitalize;
@@ -66,8 +74,6 @@
 
     &__details {
         font-family: Volkhov;
-        font-style: normal;
-        font-weight: normal;
         font-size: 16px;
         line-height: 21px;
         text-transform: capitalize;

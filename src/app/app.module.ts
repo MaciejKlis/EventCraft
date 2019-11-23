@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
 import { EventState } from './state/event/event.state';
 import { EventCreatorComponent } from './event-creator/event-creator.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -35,6 +36,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     ButtonModule,
+    DropdownModule,
     InputTextModule,
     InputTextareaModule,
     CalendarModule,

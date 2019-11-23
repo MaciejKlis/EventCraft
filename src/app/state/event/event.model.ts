@@ -1,5 +1,5 @@
 export interface Event {
-    id: string;
+    id?: string;
     name: string;
     description: string;
     organizer: string;
@@ -8,6 +8,7 @@ export interface Event {
     endAt: Date;
     type: string;
     imageUrl: string;
+    createdAt?: Date;
 }
 
 export interface EventStateModel {

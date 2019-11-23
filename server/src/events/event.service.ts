@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { Event } from './event.model';
-``
+
 @Injectable()
 export class EventService {
   private events: Event[] = [];
@@ -45,7 +45,8 @@ export class EventService {
       startAt: event.startAt,
       endAt: event.endAt,
       type: event.type,
-      imageUrl: event.imageUrl
+      imageUrl: event.imageUrl,
+      createdAt: event.createdAt,
     }));
   }
 
@@ -61,6 +62,7 @@ export class EventService {
       endAt: event.endAt,
       type: event.type,
       imageUrl: event.imageUrl,
+      createdAt: event.createdAt,
     };
   }
 

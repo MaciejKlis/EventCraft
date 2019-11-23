@@ -1,7 +1,10 @@
 <div class="container">
     <div class="serachTool">
         <div class="serachTool__half">
-
+            <div>
+                <span>Sort events by: </span>
+                <p-dropdown [options]="sortOptions" (onChange)="changeOrder($event.value)" [(ngModel)]="selectedOrder"></p-dropdown>
+            </div>
         </div>
         <div class="serachTool__half"></div>
     </div>
