@@ -11,7 +11,11 @@ import { Event } from '../state/event/event.model';
   styleUrls: ['./events-view.component.scss']
 })
 export class EventsViewComponent implements OnInit, OnDestroy {
+  eventName:string = '';
+
   @Select(EventState.events) events$: Observable<Event[]>;
+  
+  event$ = this.store.select(state => state.events.events)
 
   constructor(private store: Store) { }
 
@@ -24,6 +28,10 @@ export class EventsViewComponent implements OnInit, OnDestroy {
 
 
   private eventSubscription: Subscription;
+
+  searchByTitle(inputValue:string):void{
+    this.event$ = this.store.select(EventState.nameFilter(inputValue))
+  }
 
   changeOrder(order:string){
     this.store.dispatch(new ReorderByCreateTime(order))
