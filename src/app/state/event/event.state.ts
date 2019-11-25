@@ -1,4 +1,4 @@
-import { State, StateContext, Action, Selector, NgxsOnInit, Store } from '@ngxs/store';
+import { State, StateContext, Action, Selector, NgxsOnInit, Store, createSelector } from '@ngxs/store';
 import { Event, EventStateModel } from './event.model';
 import { CreateEvent, AddExistingEvents, RemoveEvent, UpdateEvent, ReorderByCreateTime } from './event.actions';
 import { EventsService } from './events.service';
@@ -22,6 +22,13 @@ export class EventState implements NgxsOnInit{
     @Selector()
     static events(state: EventStateModel) {
         return state.events
+    }
+
+    @Selector()
+    static nameFilter(name:string){
+        return createSelector([EventState], (state) => {
+            return state.events.events.filter(ev => ev.name.toLowerCase().includes(name.toLowerCase()))
+        })
     }
     
     @Action(AddExistingEvents)

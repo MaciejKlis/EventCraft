@@ -6,11 +6,16 @@
                 <p-dropdown [options]="sortOptions" (onChange)="changeOrder($event.value)" [(ngModel)]="selectedOrder"></p-dropdown>
             </div>
         </div>
-        <div class="serachTool__half"></div>
+        <div class="serachTool__half">
+            <div class="ui-inputgroup">
+                <input type="text" pInputText placeholder="Search title" #searchInput>         
+                <button pButton type="button" icon="pi pi-search" class="ui-button-warn" (click)="searchByTitle(searchInput.value)"></button>
+            </div>    
+        </div>
     </div>
     <div class="resultContainer">
 
-        <div *ngFor="let event of events$ | async" class="eventView">
+        <div *ngFor="let event of event$ | async" class="eventView">
             <div class="eventView__imageBox">
                 <img src="{{ event.imageUrl }}" alt="">
             </div>
@@ -33,24 +38,3 @@
 
     </div>
 </div>
-
-<!-- <ul class="event-list">
-    <li *ngFor="let event of events$ | async" class="event-list__single">
-        <div class="event-list__imageBox">
-            <img src="{{ event.imageUrl }}" alt="" class="event-list__image">
-        </div>
-        <div class="event-list__body">
-            <h3>{{ event.name }}</h3>
-            <p>{{ event.description }}</p>
-        </div>
-        <div class="event-list__action">
-            <a [routerLink]="['/event', event.id]" routerLinkActive="active">
-                <button pButton type="button" label="View" ></button>
-            </a>
-            <a [routerLink]="['/event/edit', event.id]" routerLinkActive="active">
-                <button pButton type="button" label="Edit"></button>
-            </a>
-            <button pButton type="button" label="Remove" (click)="removeEvent(event.id)"></button>
-        </div>
-    </li> 
-</ul> -->
