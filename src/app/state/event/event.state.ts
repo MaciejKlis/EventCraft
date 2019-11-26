@@ -45,6 +45,7 @@ export class EventState implements NgxsOnInit{
         .pipe(switchMap(id => id ? this.eventsService.getEventById(id) : empty() ))
         .subscribe(event => {
             const { events } = getState();
+
             patchState({
                 events: [
                     ...events,

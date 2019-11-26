@@ -10,11 +10,11 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 const routes: Routes = [
   {
     path: '',
-    component: EventsViewComponent
+    component: LandingPageComponent
   },
   {
-    path: 'landing',
-    component: LandingPageComponent
+    path: 'search',
+    component: EventsViewComponent
   },
   { 
     path: 'create', 
