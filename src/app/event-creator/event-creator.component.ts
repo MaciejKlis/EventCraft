@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store, Actions, ofActionDispatched, Select } from '@ngxs/store';
+import { debounceTime, switchMap, debounce} from 'rxjs/operators';
 import { CreateEvent } from '../state/event/event.actions';
 import { EventFactory } from '../event-factory/eventFactory';
-
+import { EventState } from '../state/event/event.state';
+import { Event } from '../state/event/event.model';
+import { empty, Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-event-creator',
   templateUrl: './event-creator.component.html',
   styleUrls: ['./event-creator.component.scss']
 })
 
-export class EventCreatorComponent implements OnInit{
+export class EventCreatorComponent implements OnInit, OnDestroy{
   constructor(
-    private store: Store
+    private router: Router,
+    private store: Store,
+    private actions$: Actions,
   ) {}
 
   types = [
@@ -30,9 +36,30 @@ export class EventCreatorComponent implements OnInit{
   eventEnd: Date;
   eventType: string;
   eventImage: string;
+
+  @Select(EventState.events) events$: Observable<Event[]>;
   
-  ngOnInit() {}
+  lastId:string;
   
+  private eventSubscription: Subscription;
+  private actionSubscription: Subscription;
+
+  ngOnInit() {
+    this.actionSubscription = this.actions$.pipe(
+      ofActionDispatched(CreateEvent),
+      debounceTime(300),
+      switchMap( ()=>{
+        return this.store.select(EventState.events)
+      })
+    ).subscribe(ev=>{
+      this.router.navigateByUrl('/event/' + ev[ev.length - 1].id )
+    })
+  }
+  
+  ngOnDestroy(){
+    this.actionSubscription.unsubscribe();
+  }
+
   createEvent(){
     this.store.dispatch(
       new CreateEvent({ 
@@ -46,13 +73,14 @@ export class EventCreatorComponent implements OnInit{
         type: this.eventType,
         imageUrl: this.eventImage,
         createdAt: new Date,
-      })  
-    );
+      })
+    )
   }
+
 
   createRandom(){
     this.store.dispatch(
       new CreateEvent(EventFactory.create())  
-    );
+    )
   }
 }

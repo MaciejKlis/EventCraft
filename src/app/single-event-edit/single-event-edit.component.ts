@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Select, Store, Actions, ofActionSuccessful } from '@ngxs/store';
 import { EventState } from '../state/event/event.state';
 import { Event } from '../state/event/event.model';
 import { Observable } from 'rxjs'
@@ -15,7 +15,9 @@ import { UpdateEvent } from '../state/event/event.actions';
 export class SingleEventEditComponent implements OnInit{
 
   constructor(private route: ActivatedRoute,
-              private store: Store) { }
+              private router: Router,
+              private store: Store,
+              private actions$: Actions) { }
 
   @Select(EventState.events) events$: Observable<Event[]>
 
@@ -51,6 +53,10 @@ export class SingleEventEditComponent implements OnInit{
         this.event.startAt = new Date(this.event.startAt)
         this.event.endAt = new Date(this.event.endAt)
       }
+    })
+
+    this.actions$.pipe(ofActionSuccessful(UpdateEvent)).subscribe((ev) => {
+      this.router.navigateByUrl('/event/' + ev.event.id)
     })
   }
   

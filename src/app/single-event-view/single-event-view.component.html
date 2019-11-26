@@ -13,6 +13,12 @@
         <span class="eventCounter">Time to start event {{ timeToStart }}</span>
     </div>
     <div class="eventContainer">
+        <div class="toolBox">
+            <a [routerLink]="['/event/edit', event.id]" routerLinkActive="active">
+                <button pButton type="button" label="Edit"></button>
+            </a>
+            <button pButton type="button" label="Remove" ></button>
+        </div>
         <div class="eventTitleBox">
             <h1 class="eventTitleBox__title">{{ event.name }}</h1>
         </div>

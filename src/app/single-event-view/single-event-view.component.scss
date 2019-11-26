@@ -23,8 +23,20 @@
     background: url('../../assets/argyle.png');
     padding: 0 34px;
 
+    .toolBox {
+        padding-top: 10px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        a {
+            margin: 0 20px
+        }
+    }
+
     .eventTitleBox {
-        padding: 45px 0;
+        padding: 10px 0 30px;
 
         &__title {
             display: block;

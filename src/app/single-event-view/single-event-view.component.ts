@@ -33,13 +33,7 @@ export class SingleEventViewComponent implements OnInit {
     t -= minutes * 60;
     seconds = t % 60;
 
-    return [
-        days + 'd',
-        hours + 'h',
-        minutes + 'm',
-        seconds + 's'
-    ].join(' ');
-  }
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`  }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
