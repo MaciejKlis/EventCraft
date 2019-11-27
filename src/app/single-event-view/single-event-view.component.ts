@@ -23,7 +23,7 @@ export class SingleEventViewComponent implements OnInit {
   id: string;
   event: Event;
 
-  dhms(t) {
+  dhms = (t) => {
     let days, hours, minutes, seconds;
     days = Math.floor(t / 86400);
     t -= days * 86400;
@@ -33,14 +33,35 @@ export class SingleEventViewComponent implements OnInit {
     t -= minutes * 60;
     seconds = t % 60;
 
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`  }
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`  
+  }
+
+  swichtEnumToString = (type:string) => {
+    switch (type) {
+      case 'conference': 
+        return 'Conference';
+      case 'golfEvents':
+        return 'Golf event';
+      case 'themeParties':
+        return 'Theme party';
+      case 'WEDDING':
+        return 'wedding';
+      case 'birthday':
+        return 'Birthday'
+      default:
+        return 'Other';
+    }
+  }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     
     this.events$.subscribe(events => {
       events.forEach(event => {
-        if(event.id == this.id) this.event = event;
+        if(event.id == this.id){
+          this.event = event;
+          this.event.type = this.swichtEnumToString(event.type);
+        }
       })
     })
 

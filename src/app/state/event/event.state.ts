@@ -30,6 +30,13 @@ export class EventState implements NgxsOnInit{
             return state.events.events.filter(ev => ev.name.toLowerCase().includes(name.toLowerCase()))
         })
     }
+
+    @Selector()
+    static selectById(id: string) {
+        return createSelector([EventState], (state) => {
+            return state.events.events.filter(ev => ev.id === id)[0] ;
+        })
+    }
     
     @Action(AddExistingEvents)
     addExistingEvents({ patchState }: StateContext<EventStateModel>, { allEvents }: AddExistingEvents) {
