@@ -4,10 +4,10 @@
     </div>
     <div class="eventContainer">
         <div class="toolBox">
-            <!-- <a [routerLink]="['/event/edit', event.id]" routerLinkActive="active">
+            <a [routerLink]="['/event/edit', event.id]" routerLinkActive="active">
                 <button pButton type="button" label="Edit"></button>
-            </a> -->
-            <!-- <button pButton type="button" label="Remove" ></button> -->
+            </a>
+            <button pButton type="button" label="Remove" (click)="removeEvent()"></button>
         </div>
         <div class="eventTitleBox">
             <h1 class="eventTitleBox__title">{{ event.name }}</h1>

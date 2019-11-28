@@ -6,6 +6,7 @@ import { Event } from '../state/event/event.model';
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators';
 import { UpdateEvent } from '../state/event/event.actions';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-single-event-edit',
@@ -60,7 +61,20 @@ export class SingleEventEditComponent implements OnInit{
     })
   }
   
-  updateEvent():void{
+  updateEvent(form:NgForm):void{
+    const formValue = form.value
+    
+    this.event.name = formValue.name,
+    this.event.description = formValue.description,
+    this.event.organizer = formValue.organizer,
+    this.event.localization = formValue.localization,
+    this.event.startAt = formValue.startAt,
+    this.event.endAt = formValue.endAt,
+    this.event.type = formValue.type,
+    this.event.imageUrl = formValue.imageUrl,
+  
+    console.log(this.event.id)
+
     this.store.dispatch(new UpdateEvent(this.event));
   }
 }

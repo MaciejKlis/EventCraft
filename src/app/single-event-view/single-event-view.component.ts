@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { RemoveEvent } from '../state/event/event.actions';
 import { EventState } from '../state/event/event.state';
 import { Event } from '../state/event/event.model';
 import { Observable, interval, Subscription } from 'rxjs';
@@ -19,6 +20,7 @@ export class SingleEventViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private store: Store
   ) { }
   
   id: string;
@@ -45,8 +47,8 @@ export class SingleEventViewComponent implements OnInit {
         return 'Golf event';
       case 'themeParties':
         return 'Theme party';
-      case 'WEDDING':
-        return 'wedding';
+      case 'wedding':
+        return 'Wedding';
       case 'birthday':
         return 'Birthday'
       default:
@@ -88,6 +90,11 @@ export class SingleEventViewComponent implements OnInit {
         }
       })
     },1000)
+  }
+
+  removeEvent(){
+    this.store.dispatch(new RemoveEvent(this.event.id))
+    this.router.navigateByUrl('/search')
   }
 
   ngOnDestroy(){
