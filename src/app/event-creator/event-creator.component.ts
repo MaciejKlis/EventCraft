@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, Actions, ofActionDispatched, Select } from '@ngxs/store';
-import { debounceTime, switchMap, debounce} from 'rxjs/operators';
+import { Store, Actions, ofActionDispatched } from '@ngxs/store';
+import { debounceTime, switchMap} from 'rxjs/operators';
 import { CreateEvent } from '../state/event/event.actions';
 import { EventFactory } from '../event-factory/eventFactory';
 import { EventState } from '../state/event/event.state';
-import { Event } from '../state/event/event.model';
-import { empty, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-event-creator',
   templateUrl: './event-creator.component.html',
@@ -28,16 +28,6 @@ export class EventCreatorComponent implements OnInit, OnDestroy{
     {label: 'Birthday', value: 'birthday', icon: 'pi pi-unlock'},
   ];
 
-  eventName: string;
-  eventDescription: string;
-  eventOrganizer: string;
-  eventLocalization: string;
-  eventStart: Date;
-  eventEnd: Date;
-  eventType: string;
-  eventImage: string;
-
-  @Select(EventState.events) events$: Observable<Event[]>;
   
   lastId:string;
   
@@ -60,18 +50,20 @@ export class EventCreatorComponent implements OnInit, OnDestroy{
     this.actionSubscription.unsubscribe();
   }
 
-  createEvent(){
+  createEvent(form: NgForm){
+    const event = form.value
+
     this.store.dispatch(
       new CreateEvent({ 
         id: "dasdas",
-        name: this.eventName,
-        description: this.eventDescription,
-        organizer: this.eventOrganizer,
-        localization: this.eventLocalization,
-        startAt: this.eventStart,
-        endAt: this.eventEnd,
-        type: this.eventType,
-        imageUrl: this.eventImage,
+        name: event.name,
+        description: event.description,
+        organizer: event.organizer,
+        localization: event.localization,
+        startAt: new Date(event.startAt),
+        endAt: new Date(event.endAt),
+        type: event.type,
+        imageUrl: event.imageSrc,
         createdAt: new Date,
       })
     )

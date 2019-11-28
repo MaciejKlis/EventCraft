@@ -13,7 +13,5 @@ export class AppComponent implements OnInit {
 
   constructor(private store: Store){}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 }
