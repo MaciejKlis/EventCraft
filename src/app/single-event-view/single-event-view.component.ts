@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { RemoveEvent } from '../state/event/event.actions';
 import { EventState } from '../state/event/event.state';
 import { Event } from '../state/event/event.model';
 import { Observable, interval, Subscription } from 'rxjs';
-import { map, debounceTime, debounce } from 'rxjs/operators'
 
 @Component({
   selector: 'app-single-event-view',
@@ -13,18 +12,17 @@ import { map, debounceTime, debounce } from 'rxjs/operators'
   styleUrls: ['./single-event-view.component.scss']
 })
 export class SingleEventViewComponent implements OnInit {
-
-  @Select(EventState.events) events$: Observable<Event[]>;
-  timeToStart:string
-
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private store: Store
   ) { }
   
-  id: string;
-  event: Event;
+  id:string
+  event$: Observable<Event>;
+  timeToStart: string = " ";
+  startEvent: Date;
 
   dhms = (t) => {
     let days, hours, minutes, seconds;
@@ -56,48 +54,21 @@ export class SingleEventViewComponent implements OnInit {
     }
   }
 
-  onInitSubscription: Subscription;
-
-  ngOnInit() {
+  ngOnInit(){
     this.id = this.route.snapshot.paramMap.get('id');
-    
-    this.onInitSubscription = this.events$
-    .pipe(
-      map(events => events.filter(ev => ev.id === this.id)),
-      debounceTime(700)
-    )
-    .subscribe(event => {
-      if(event.length){
-        this.event = event[0];
-        this.event.type = this.swichtEnumToString(event[0].type);
-      } else {
-        alert("Event doesn't exist")
-        this.router.navigateByUrl('/search')
+    this.event$ = this.store.select(EventState.selectById(this.id))
+
+    this.event$.subscribe(ev => {
+      if(ev){
+        ev.type = this.swichtEnumToString(ev.type);
+        this.startEvent = new Date(ev.startAt)
       }
     })
-
-    //Wait for debounce event
-    setTimeout(()=>{
-      let date = new Date(this.event.startAt)
-
-      interval(1000).pipe(
-        map(x => {
-          return Math.floor((date.getTime() - new Date().getTime()) / 1000);
-        })
-      ).subscribe(timeToStartInSeconds=> { 
-        if(timeToStartInSeconds !== undefined){
-          this.timeToStart = this.dhms(timeToStartInSeconds) 
-        }
-      })
-    },1000)
   }
+
 
   removeEvent(){
-    this.store.dispatch(new RemoveEvent(this.event.id))
+    this.store.dispatch(new RemoveEvent(this.id))
     this.router.navigateByUrl('/search')
-  }
-
-  ngOnDestroy(){
-    this.onInitSubscription.unsubscribe();
   }
 }

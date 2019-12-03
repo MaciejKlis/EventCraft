@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="event$ | async as event; else loading">
     <div class="counterBox">
-        <span class="eventCounter">Time to start event {{ timeToStart }}</span>
+        <!-- <span class="eventCounter">Time to start event </span> -->
     </div>
     <div class="eventContainer">
         <div class="toolBox">
@@ -27,4 +27,17 @@
         <p class="eventDescription">{{ event.description }}</p>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="container">
+        <div class="counterBox">
+            <span class="eventCounter">Loading ...</span>
+        </div>
+        <div class="eventContainer">
+            <div class="eventTitleBox">
+                <h1 class="eventTitleBox__title">Event not found yet, you will be redirected to searcher</h1>
+            </div>
+        </div>
+    </div>
+</ng-template>
 

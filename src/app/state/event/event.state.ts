@@ -34,7 +34,7 @@ export class EventState implements NgxsOnInit{
     @Selector()
     static selectById(id: string) {
         return createSelector([EventState], (state) => {
-            return state.events.events.filter(ev => ev.id === id)[0] ;
+            return state.events.events.filter(ev => ev.id === id)[0];
         })
     }
     

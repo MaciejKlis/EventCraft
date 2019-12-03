@@ -4,6 +4,7 @@ import { RemoveEvent, ReorderByCreateTime } from '../state/event/event.actions';
 import { Observable, Subscription } from 'rxjs';
 import { EventState } from '../state/event/event.state';
 import { Event } from '../state/event/event.model';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-events-view',
