@@ -1,0 +1,35 @@
+<form [formGroup]="eventForm" (ngSubmit)="sendEvent()">
+  <label>Event title:</label>
+  <input formControlName="name" class="defultInput">
+
+  <label>Event description:</label>
+  <textarea formControlName="description" class="defultInput"></textarea>
+
+  <label>Event organizer:</label>
+  <input formControlName="organizer" class="defultInput">
+
+  <label>Localization:</label>
+  <input formControlName="localization" class="defultInput">
+
+  <label>Event start at:</label>
+  <p-calendar formControlName="startAt" [minDate]="calendar.minDate" [showTime]="calendar.showTime"
+    [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" (onSelect)="setMinimalCalendarDate()"></p-calendar>
+
+  <label>Event end at:</label>
+  <p-calendar formControlName="endAt" [minDate]="calendar.minDate" [showTime]="calendar.showTime"
+    [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-calendar>
+
+  <label>Category:</label>
+  <div class="flexCenter">
+    <p-selectButton formControlName="type" [options]="types"></p-selectButton>
+  </div>
+
+  <label>Photo url:</label>
+  <input formControlName="imageSrc" class="defultInput">
+
+  <div class="flexCenter">
+    <button pButton type="button" icon="pi pi-cloud-upload" label="Create/Update" type="submit"
+      [disabled]="!eventForm.valid">
+    </button>
+  </div>
+</form>
