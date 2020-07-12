@@ -1,47 +1,10 @@
 <div class="container">
   <div class="eventEditContainer">
-    <form (ngSubmit)="createEvent(f)" #f="ngForm">
-      <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText name="name" ngModel required>
-        <label for="float-input">Event title *</label>
-      </span>
-      <span class="ui-float-label">
-        <textarea id="float-input" rows="5" cols="30" pInputTextarea name="description" ngModel required></textarea>
-        <label for="float-input">Event description *</label>
-      </span>
-      <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText name="organizer" ngModel required>
-        <label for="float-in put">Event organizer *</label>
-      </span>
-      
-      <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText name="localization" ngModel required>
-        <label for="float-input">Localization *</label>
-      </span>
-      <br>
-
-      <span class="ui-float-label">
-        <p-calendar name="startAt" ngModel [showTime]="true" [showIcon]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'calc(100% - 33px)'}" required></p-calendar>
-        <label for="float-input">Event start at: *</label>
-      </span>
-      <br>
-
-      <span class="ui-float-label">
-        <p-calendar name="endAt" ngModel [showTime]="true" [showIcon]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'calc(100% - 33px)'}" required></p-calendar>
-        <label for="float-input">Event end at: *</label>
-      </span>
-    
-      <h3 class="category">Category *</h3>
-      <p-selectButton [options]="types" name="type" ngModel required></p-selectButton>
-
-      <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText name="imageSrc" ngModel required>
-        <label for="float-input">Photo url *</label>
-      </span>
-      <div class="button-container">
-          <button pButton type="button" icon="pi pi-plus" label="Create event" type="submit" [disabled]="!f.valid"></button>
-          <button pButton type="button" icon="pi pi-palette" label="Generate random" (click)="createRandom()"></button>
-        </div>
-    </form>
+    <eventcraft-workspace-event-form [event]="event" (updatedEvent)="updatedEvent($event)">
+    </eventcraft-workspace-event-form>
+    <div class="endLine">
+      <button pButton type="button" icon="pi pi-id-card" label="Generate random" type="submit"
+        (click)="createRandom()"></button>
+    </div>
   </div>
 </div>

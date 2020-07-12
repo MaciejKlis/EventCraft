@@ -3,41 +3,5 @@
     min-height: calc(100vh - 60px);
     margin: 0 auto;
     background: url('../../assets/argyle.png');
-    padding: 40px 50px 0 50px;
-    
-    .ui-float-label {
-        margin: 0px 0 30px;
-        display: flex;
-        
-        label {
-            color: #bbb;
-        }
-    
-        input {
-            width: 100%;
-        }
-    
-        textarea {
-            width: 100%;
-        }
-    }
-    
-    p-calendar {
-        width: 100%;
-    }
-    
-    p-selectbutton {
-        margin: 25px 0;
-        display: flex;
-        justify-content: center;
-    }
-    
-    .button-container {
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .category {
-        color: #bbb;
-    }
+    padding: 40px 50px 0 50px;   
 }
