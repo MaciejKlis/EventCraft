@@ -12,11 +12,11 @@
   <input formControlName="localization" class="defultInput">
 
   <label>Event start at:</label>
-  <p-calendar formControlName="startAt" [minDate]="calendar.minDate" [showTime]="calendar.showTime"
-    [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" (onSelect)="setMinimalCalendarDate()"></p-calendar>
+  <p-calendar formControlName="startAt" [minDate]="calendar.minDateStartAt" [showTime]="calendar.showTime"
+    [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-calendar>
 
   <label>Event end at:</label>
-  <p-calendar formControlName="endAt" [minDate]="calendar.minDate" [showTime]="calendar.showTime"
+  <p-calendar formControlName="endAt" [minDate]="calendar.minDateEndAt" [showTime]="calendar.showTime"
     [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-calendar>
 
   <label>Category:</label>

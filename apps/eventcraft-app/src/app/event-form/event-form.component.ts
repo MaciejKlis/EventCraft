@@ -1,30 +1,24 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Event } from '../state/event/event.model';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'eventcraft-workspace-event-form',
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.scss']
 })
-export class EventFormComponent implements OnInit {
+export class EventFormComponent implements OnInit, OnDestroy {
   @Input() event: Event;
   @Output() updatedEvent = new EventEmitter();
 
   constructor(private fb: FormBuilder) { }
 
-  eventForm = this.fb.group({
-    name: ['', [Validators.required]],
-    description: ['', [Validators.required]],
-    organizer: ['', [Validators.required]],
-    localization: ['', [Validators.required]],
-    startAt: ['', [Validators.required]],
-    endAt: ['', [Validators.required]],
-    type: ['', [Validators.required]],
-    imageSrc: ['', [Validators.required]],
-  })
+  eventForm: FormGroup;
+  calendarStartAt: Subscription;
 
   calendar = {
-    minDate: new Date(),
+    minDateStartAt: new Date(),
+    minDateEndAt: new Date(),
     showTime: true,
   }
 
@@ -37,32 +31,44 @@ export class EventFormComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.eventForm.setValue({
-      name: this.event.name,
-      description: this.event.description,
-      localization: this.event.localization,
-      organizer: this.event.organizer,
-      startAt: this.event.startAt,
-      endAt: this.event.endAt,
-      type: this.event.type,
-      imageSrc: this.event.imageUrl,
+    this.eventForm = this.fb.group({
+      name: [this.event.name, [Validators.required]],
+      description: [this.event.description, [Validators.required]],
+      organizer: [this.event.localization, [Validators.required]],
+      localization: [this.event.organizer, [Validators.required]],
+      startAt: [this.event.startAt, [Validators.required]],
+      endAt: [this.event.endAt, [Validators.required]],
+      type: [this.event.type, [Validators.required]],
+      imageSrc: [this.event.imageUrl, [Validators.required]],
+    })
+
+    this.calendarsOnChange();
+  }
+
+  calendarsOnChange() {
+    this.calendarStartAt = this.eventForm.get('startAt').valueChanges.subscribe(date => {
+      const startAtDate = date;
+      const endAtDate = this.eventForm.get('endAt');
+
+      this.calendar.minDateEndAt = startAtDate;
+      if (startAtDate > endAtDate.value) endAtDate.setValue(startAtDate);
     })
   }
 
-  setMinimalCalendarDate(): void { }
-
-  setMaxymalCalendarDate(): void { }
-
   sendEvent(): void {
-    this.event.name = this.eventForm.controls['name'].value;
-    this.event.description = this.eventForm.controls['description'].value;
-    this.event.organizer = this.eventForm.controls['organizer'].value;
-    this.event.localization = this.eventForm.controls['localization'].value;
-    this.event.startAt = this.eventForm.controls['startAt'].value;
-    this.event.endAt = this.eventForm.controls['endAt'].value;
-    this.event.type = this.eventForm.controls['type'].value;
-    this.event.imageUrl = this.eventForm.controls['imageSrc'].value;
+    this.event.name = this.eventForm.get('name').value;
+    this.event.description = this.eventForm.get('description').value;
+    this.event.organizer = this.eventForm.get('organizer').value;
+    this.event.localization = this.eventForm.get('localization').value;
+    this.event.startAt = this.eventForm.get('startAt').value;
+    this.event.endAt = this.eventForm.get('endAt').value;
+    this.event.type = this.eventForm.get('type').value;
+    this.event.imageUrl = this.eventForm.get('imageSrc').value;
 
     this.updatedEvent.emit(this.event);
+  }
+
+  ngOnDestroy() {
+    this.calendarStartAt.unsubscribe();
   }
 }
