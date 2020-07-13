@@ -2,28 +2,25 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, Actions, ofActionDispatched } from '@ngxs/store';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { CreateEvent } from '../state/event/event.actions';
+import { CreateEvents } from '../state/event/event.actions';
 import { Event } from '../state/event/event.model';
 import { EventFactory } from '../event-factory/eventFactory';
 import { EventState } from '../state/event/event.state';
 import { Subscription } from 'rxjs';
-import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-event-creator',
   templateUrl: './event-creator.component.html',
   styleUrls: ['./event-creator.component.scss']
 })
-
-export class EventCreatorComponent implements OnInit, OnDestroy {
+export class EventCreatorComponent {
   constructor(
     private router: Router,
     private store: Store,
-    private actions$: Actions,
   ) { }
 
   lastId: string;
   event: Event = {
-    id: "",
     name: "",
     description: "",
     organizer: "",
@@ -32,26 +29,9 @@ export class EventCreatorComponent implements OnInit, OnDestroy {
     endAt: new Date(),
     type: "",
     imageUrl: "",
-    createdAt: new Date(),
   }
 
   private actionSubscription: Subscription;
-
-  ngOnInit() {
-    this.actionSubscription = this.actions$.pipe(
-      ofActionDispatched(CreateEvent),
-      debounceTime(300),
-      switchMap(() => {
-        return this.store.select(EventState.events)
-      })
-    ).subscribe(ev => {
-      this.router.navigateByUrl('/event/' + ev[ev.length - 1].id)
-    })
-  }
-
-  ngOnDestroy() {
-    this.actionSubscription.unsubscribe();
-  }
 
   updatedEvent(event) {
     this.event = event;
@@ -60,14 +40,22 @@ export class EventCreatorComponent implements OnInit, OnDestroy {
 
   createEvent() {
     this.store.dispatch(
-      new CreateEvent(this.event)
+      new CreateEvents([this.event])
     )
   }
 
+  createRandom(amountOfElements: number) {
+    let eventsArr = [];
 
-  createRandom() {
+    for (let i = 0; i < amountOfElements; i++) {
+      eventsArr[i] = EventFactory.create();
+    }
+
     this.store.dispatch(
-      new CreateEvent(EventFactory.create())
+      new CreateEvents(eventsArr)
+    ).subscribe(events => {
+      events.length === 1 ? this.router.navigateByUrl('/event/' + events[0]._id) : this.router.navigateByUrl('search');
+    }
     )
   }
 }

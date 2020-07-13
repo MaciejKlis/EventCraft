@@ -4,7 +4,7 @@
     </div>
     <div class="eventContainer">
         <div class="toolBox">
-            <a [routerLink]="['/event/edit', event.id]" routerLinkActive="active">
+            <a [routerLink]="['/event/edit', event._id]" routerLinkActive="active">
                 <button pButton type="button" label="Edit"></button>
             </a>
             <button pButton type="button" label="Remove" (click)="removeEvent()"></button>
@@ -40,4 +40,3 @@
         </div>
     </div>
 </ng-template>
-

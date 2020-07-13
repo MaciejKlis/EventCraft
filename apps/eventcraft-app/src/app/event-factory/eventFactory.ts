@@ -1,28 +1,18 @@
 import { Event } from '../state/event/event.model';
 
-export class EventFactory{
-	id: string;
-	name: string;
-	description: string;
-	organizer: string;
-	localization: string;
-	startAt: Date;
-	endAt: Date;
-	type: string;
-	imageUrl: string;
-
-	static create() : Event {
+export class EventFactory {
+	static create(): Event {
 		let randomName = [
-			'Bon Appétit presents', 
-			'INDIGOAT Tour', 
-			'Commons Artist Project', 
-			'Brendan Fernandes', 
+			'Bon Appétit presents',
+			'INDIGOAT Tour',
+			'Commons Artist Project',
+			'Brendan Fernandes',
 			'A Call and Response',
 			'DESTINOS',
 			'3rd International Latino',
 			'Theater Festival'
 		]
-	
+
 		let randomDescriptions = [
 			'Bon Appétit presents Chicago Gourmet is celebrating all things food & entertainment this September, and it’s going to be epic.',
 			'Join chefs Andrew Zimmern, Rick Bayless, Stephanie Izard, Iron Chef Morimoto and many more for a fabulous weekend',
@@ -35,7 +25,7 @@ export class EventFactory{
 			'Fernandes (Kenyan, b. 1979) seeks to isolate everyday actions, such as running for the bus or slinging a bag over your shoulder,',
 			'considering individuals’ movements in social spaces as a kind of choreography. Over the course of the exhibition'
 		]
-	
+
 		let randomOrganizer = [
 			'Coca-cola',
 			'Sobieski',
@@ -45,7 +35,7 @@ export class EventFactory{
 			'Mieq',
 			'owozurzy'
 		]
-	
+
 		let randomLocalization = [
 			'Warsaw',
 			'Chicago',
@@ -55,7 +45,7 @@ export class EventFactory{
 			'Madrid',
 			'Wien'
 		]
-	
+
 		let randomTypes = [
 			'conference',
 			'golfEvents',
@@ -63,7 +53,7 @@ export class EventFactory{
 			'wedding',
 			'birthday',
 		]
-		
+
 		let randomImgs = [
 			'https://media2.fdncms.com/stranger/imager/u/large/40626741/chbp_17_day_2_-_image_joshua_lewis-21_copy.jpg',
 			'http://zesportemnatak.pl/wp-content/uploads/2018/11/event-12-870x550.jpg',
@@ -72,25 +62,23 @@ export class EventFactory{
 			'http://i1288.photobucket.com/albums/b485/Wirtualne_Pniewy/3krolowie/aktywniplus50/bzdr/LA/czyt/kino-3_zpswozaimis.jpg',
 			'http://www.lazienki-krolewskie.pl/public/upload/news/big/593e8aeac5998.jpg'
 		]
-	
+
 		let randomDate = (start, end) => {
 			return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 		}
-	
-		let startAt = randomDate(new Date(), new Date(2021, 1 , 12));
-		let endAt = randomDate(startAt, new Date(2021, 1 , 14));
-	
-		return{
-			id: "Be changed",
-			name: randomName[Math.floor(Math.random()*randomName.length)],
-			description: randomDescriptions[Math.floor(Math.random()*randomDescriptions.length)],
-			organizer: randomOrganizer[Math.floor(Math.random()*randomOrganizer.length)],
-			localization: randomLocalization[Math.floor(Math.random()*randomLocalization.length)],
+
+		let startAt = randomDate(new Date(), new Date(2021, 1, 12));
+		let endAt = randomDate(startAt, new Date(2021, 1, 14));
+
+		return {
+			name: randomName[Math.floor(Math.random() * randomName.length)],
+			description: randomDescriptions[Math.floor(Math.random() * randomDescriptions.length)],
+			organizer: randomOrganizer[Math.floor(Math.random() * randomOrganizer.length)],
+			localization: randomLocalization[Math.floor(Math.random() * randomLocalization.length)],
 			startAt: startAt,
 			endAt: endAt,
-			type: randomTypes[Math.floor(Math.random()*randomTypes.length)],
-			imageUrl: randomImgs[Math.floor(Math.random()*randomImgs.length)],
-			createdAt: new Date(),
+			type: randomTypes[Math.floor(Math.random() * randomTypes.length)],
+			imageUrl: randomImgs[Math.floor(Math.random() * randomImgs.length)],
 		}
 	}
 }

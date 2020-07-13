@@ -1,25 +1,24 @@
 import { State, StateContext, Action, Selector, NgxsOnInit, Store, createSelector } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { Event, EventStateModel } from './event.model';
-import { CreateEvent, AddExistingEvents, RemoveEvent, UpdateEvent, ReorderByCreateTime } from './event.actions';
+import { CreateEvents, AddExistingEvents, RemoveEvent, UpdateEvent, ReorderByCreateTime } from './event.actions';
 import { EventsService } from './events.service';
-import { Observable, empty } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @State<EventStateModel>({
-name: 'events',
+    name: 'events',
     defaults: {
         events: []
-    }   
+    }
 })
 
 @Injectable()
-export class EventState implements NgxsOnInit{
+export class EventState implements NgxsOnInit {
     public events$: Observable<Event[]>
-    
+
     constructor(private eventsService: EventsService,
-                private store: Store){}
+        private store: Store) { }
 
     @Selector()
     static events(state: EventStateModel) {
@@ -27,7 +26,7 @@ export class EventState implements NgxsOnInit{
     }
 
     @Selector()
-    static nameFilter(name:string){
+    static nameFilter(name: string) {
         return createSelector([EventState], (state) => {
             return state.events.events.filter(ev => ev.name.toLowerCase().includes(name.toLowerCase()))
         })
@@ -36,10 +35,10 @@ export class EventState implements NgxsOnInit{
     @Selector()
     static selectById(id: string) {
         return createSelector([EventState], (state) => {
-            return state.events.events.filter(ev => ev.id === id)[0];
+            return state.events.events.filter(ev => ev._id === id)[0];
         })
     }
-    
+
     @Action(AddExistingEvents)
     addExistingEvents({ patchState }: StateContext<EventStateModel>, { allEvents }: AddExistingEvents) {
         patchState({
@@ -47,29 +46,28 @@ export class EventState implements NgxsOnInit{
         });
     }
 
-    @Action(CreateEvent)
-    createEvent({ getState, patchState }: StateContext<EventStateModel>, { event }: CreateEvent) {
-        this.eventsService.insertEvent(event)
-        .pipe(map(id => id['id']))
-        .pipe(switchMap(id => id ? this.eventsService.getEventById(id) : empty() ))
-        .subscribe(event => {
+    @Action(CreateEvents)
+    createEvent({ getState, patchState }: StateContext<EventStateModel>, { eventsToAdd }: CreateEvents) {
+        this.eventsService.insertEvent(eventsToAdd).subscribe(recentlyAddedEvents => {
+
             const { events } = getState();
 
+            console.log(events)
             patchState({
                 events: [
                     ...events,
-                    event
+                    ...recentlyAddedEvents
                 ]
-            });
-        });
+            })
+        })
     }
 
     @Action(RemoveEvent)
-    removeEventListener({getState, patchState}: StateContext<EventStateModel>, { idEvent }: RemoveEvent){
+    removeEventListener({ getState, patchState }: StateContext<EventStateModel>, { idEvent }: RemoveEvent) {
         this.eventsService.removeEventById(idEvent).subscribe();
 
         patchState({
-            events: getState().events.filter(a => a.id !== idEvent)
+            events: getState().events.filter(a => a._id !== idEvent)
         });
     }
 
@@ -78,7 +76,7 @@ export class EventState implements NgxsOnInit{
         this.eventsService.updateElementById(event).subscribe();
 
         const { events } = getState();
-        const indexOfUpdatedEvent = events.findIndex(existEvent => existEvent.id === event.id);
+        const indexOfUpdatedEvent = events.findIndex(existEvent => existEvent._id === event._id);
         events[indexOfUpdatedEvent] = event;
 
         patchState({
@@ -87,24 +85,24 @@ export class EventState implements NgxsOnInit{
     }
 
     @Action(ReorderByCreateTime)
-    reorderByCreateTime({getState, patchState}: StateContext<EventStateModel>, {orderType}: ReorderByCreateTime){
+    reorderByCreateTime({ getState, patchState }: StateContext<EventStateModel>, { orderType }: ReorderByCreateTime) {
         const { events } = getState();
 
-        events.sort((a, b)=>{
+        events.sort((a, b) => {
             let aTimestamp = new Date(a.createdAt).getTime();
             let bTimestamp = new Date(b.createdAt).getTime();
 
             return orderType === "latest" ? bTimestamp - aTimestamp : aTimestamp - bTimestamp;
         })
-        
+
         patchState({
             events
         });
     }
 
-    ngxsOnInit(ctx: StateContext<EventStateModel>){
+    ngxsOnInit(ctx: StateContext<EventStateModel>) {
         this.events$ = this.eventsService.getAllEvents()
-        this.events$.subscribe(events=>{
+        this.events$.subscribe(events => {
             this.store.dispatch(new AddExistingEvents(events))
         })
     }

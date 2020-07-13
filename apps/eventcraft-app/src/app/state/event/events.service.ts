@@ -13,11 +13,11 @@ export class EventsService {
 
   private readonly apiUrl = 'http://localhost:3333/api/events/'
 
-  public getAllEvents(){
+  public getAllEvents() {
     return this.http.get<Event[]>(this.apiUrl)
-      .pipe(map( events  => events.map(event =>{         
+      .pipe(map(events => events.map(event => {
         return ({
-          id: event.id,
+          _id: event._id,
           name: event.name,
           description: event.description,
           organizer: event.organizer,
@@ -32,19 +32,19 @@ export class EventsService {
       )))
   }
 
-  public insertEvent(event: Event){
+  public insertEvent(event: Event[]) {
     return this.http.post<Event[]>(this.apiUrl, event)
   }
 
-  public getEventById(id: string){
+  public getEventById(id: string) {
     return this.http.get<Event>(this.apiUrl + id)
   }
 
-  public removeEventById(id: string){
+  public removeEventById(id: string) {
     return this.http.delete<Event>(this.apiUrl + id)
   }
 
-  public updateElementById(event: Event){
-    return this.http.patch<Event>(this.apiUrl + event.id, event)
+  public updateElementById(event: Event) {
+    return this.http.patch<Event>(this.apiUrl + event._id, event)
   }
 }

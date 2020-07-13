@@ -22,7 +22,7 @@ export class SingleEventEditComponent implements OnInit {
   @Select(EventState.events) events$: Observable<Event[]>
   eventIsLoaded = false;
   event: Event = <Event>{
-    id: '',
+    _id: '',
     name: '',
     description: '',
     organizer: '',
@@ -34,10 +34,10 @@ export class SingleEventEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.event.id = this.route.snapshot.paramMap.get('id');
+    this.event._id = this.route.snapshot.paramMap.get('id');
 
     this.events$
-      .pipe(map(events => events.filter(eve => eve.id === this.event.id)[0]))
+      .pipe(map(events => events.filter(eve => eve._id === this.event._id)[0]))
       .subscribe(event => {
         if (event !== undefined) {
           this.event = event;
@@ -48,7 +48,7 @@ export class SingleEventEditComponent implements OnInit {
       })
 
     this.actions$.pipe(ofActionSuccessful(UpdateEvent)).subscribe((ev) => {
-      this.router.navigateByUrl('/event/' + ev.event.id)
+      this.router.navigateByUrl('/event/' + ev.event._id)
     })
   }
 

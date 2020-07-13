@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { RemoveEvent, ReorderByCreateTime } from '../state/event/event.actions';
 import { Observable, Subscription } from 'rxjs';
@@ -12,41 +12,42 @@ import { ButtonModule } from 'primeng/button';
   styleUrls: ['./events-view.component.scss']
 })
 export class EventsViewComponent implements OnInit, OnDestroy {
-  eventName:string = '';
+  eventName: string = '';
 
   @Select(EventState.events) events$: Observable<Event[]>;
-  
+
   event$ = this.store.select(state => state.events.events)
 
   constructor(private store: Store) { }
 
   sortOptions = [
-    {label:'The Oldest', value: 'oldest' },
-    {label:'The Latest', value: 'latest' },
+    { label: 'The Oldest', value: 'oldest' },
+    { label: 'The Latest', value: 'latest' },
   ];
-  
-  selectedOrder:string
+
+  selectedOrder: string
 
 
   private eventSubscription: Subscription;
 
-  searchByTitle(inputValue:string):void{
+  searchByTitle(inputValue: string): void {
     this.event$ = this.store.select(EventState.nameFilter(inputValue))
   }
 
-  changeOrder(order:string){
+  changeOrder(order: string) {
     this.store.dispatch(new ReorderByCreateTime(order))
   }
 
   ngOnInit() {
-    this.eventSubscription = this.events$.subscribe();
+    this.eventSubscription = this.events$.subscribe(ev => { console.log(ev) });
+
   }
 
-  removeEvent(idEvent: string){
+  removeEvent(idEvent: string) {
     this.store.dispatch(new RemoveEvent(idEvent))
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.eventSubscription.unsubscribe();
   }
 }

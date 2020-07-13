@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { RemoveEvent } from '../state/event/event.actions';
 import { EventState } from '../state/event/event.state';
@@ -12,14 +12,14 @@ import { Observable, interval, Subscription } from 'rxjs';
   styleUrls: ['./single-event-view.component.scss']
 })
 export class SingleEventViewComponent implements OnInit {
-  
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private store: Store
   ) { }
-  
-  id:string
+
+  _id: string
   event$: Observable<Event>;
   timeToStart: string = " ";
   startEvent: Date;
@@ -34,12 +34,12 @@ export class SingleEventViewComponent implements OnInit {
     t -= minutes * 60;
     seconds = t % 60;
 
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`  
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`
   }
 
-  swichtEnumToString = (type:string) => {
+  swichtEnumToString = (type: string) => {
     switch (type) {
-      case 'conference': 
+      case 'conference':
         return 'Conference';
       case 'golfEvents':
         return 'Golf event';
@@ -54,12 +54,12 @@ export class SingleEventViewComponent implements OnInit {
     }
   }
 
-  ngOnInit(){
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.event$ = this.store.select(EventState.selectById(this.id))
+  ngOnInit() {
+    this._id = this.route.snapshot.paramMap.get('id');
+    this.event$ = this.store.select(EventState.selectById(this._id))
 
     this.event$.subscribe(ev => {
-      if(ev){
+      if (ev) {
         ev.type = this.swichtEnumToString(ev.type);
         this.startEvent = new Date(ev.startAt)
       }
@@ -67,8 +67,8 @@ export class SingleEventViewComponent implements OnInit {
   }
 
 
-  removeEvent(){
-    this.store.dispatch(new RemoveEvent(this.id))
+  removeEvent() {
+    this.store.dispatch(new RemoveEvent(this._id))
     this.router.navigateByUrl('/search')
   }
 }
