@@ -7,37 +7,18 @@ import { Event } from './event.model';
 export class EventService {
   private events: Event[] = [];
 
-  constructor(@InjectModel('Event') private readonly eventModel: Model<Event>){}
+  constructor(@InjectModel('Event') private readonly eventModel: Model<Event>) { }
 
-  async insertEvent(
-    name: string,
-    description: string,
-    organizer: string,
-    localization: string,
-    startAt: Date,
-    endAt: Date,
-    type: string,
-    imageUrl: string,
-  ) {
-    const newEvent = new this.eventModel({
-      name,
-      description,
-      organizer,
-      localization,
-      startAt,
-      endAt,
-      type,
-      imageUrl
-    });
-    
-    const result = await newEvent.save();
-    return result.id;
+  async insertEvent(events: Event[]) {
+    let addedEvents = await this.eventModel.insertMany(events)
+    return addedEvents;
   }
+
 
   async getEvents() {
     const events = await this.eventModel.find().exec();
-    return events.map( event => ({ 
-      id: event.id,
+    return events.map(event => ({
+      _id: event.id,
       name: event.name,
       description: event.description,
       organizer: event.organizer,
@@ -76,9 +57,9 @@ export class EventService {
     endAt: Date,
     type: string,
     imageUrl: string,
-    ) {
-      
-    await this.eventModel.updateOne({_id: eventId}, {
+  ) {
+
+    await this.eventModel.updateOne({ _id: eventId }, {
       name,
       description,
       organizer,
@@ -91,18 +72,18 @@ export class EventService {
   }
 
   async deleteEvent(prodId: string) {
-    await this.eventModel.deleteOne({_id: prodId}).exec();
+    await this.eventModel.deleteOne({ _id: prodId }).exec();
   }
 
   private async findEvent(id: string): Promise<Event> {
     let event;
-    
+
     try {
       event = await this.eventModel.findById(id);
     } catch (error) {
       throw new NotFoundException('Could not find event.');
     }
-    
+
     if (!event) {
       throw new NotFoundException('Could not find event.');
     }

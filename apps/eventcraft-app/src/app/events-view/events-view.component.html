@@ -3,36 +3,39 @@
         <div class="serachTool__half">
             <div>
                 <span>Sort events by: </span>
-                <p-dropdown [options]="sortOptions" (onChange)="changeOrder($event.value)" [(ngModel)]="selectedOrder"></p-dropdown>
+                <p-dropdown [options]="sortOptions" (onChange)="changeOrder($event.value)" [(ngModel)]="selectedOrder">
+                </p-dropdown>
             </div>
         </div>
         <div class="serachTool__half">
             <div class="ui-inputgroup">
-                <input type="text" pInputText placeholder="Search title" #searchInput>         
-                <button pButton type="button" icon="pi pi-search" class="ui-button-warn" (click)="searchByTitle(searchInput.value)"></button>
-            </div>    
+                <input type="text" pInputText placeholder="Search title" #searchInput>
+                <button pButton type="button" icon="pi pi-search" class="ui-button-warn"
+                    (click)="searchByTitle(searchInput.value)"></button>
+            </div>
         </div>
     </div>
     <div class="resultContainer">
 
         <div *ngFor="let event of event$ | async" class="eventView">
+            {{ event._id }}
             <div class="eventView__imageBox">
                 <img src="{{ event.imageUrl }}" alt="">
             </div>
             <div class="eventView__body">
                 <h2 class="eventView__title">{{ event.name }}</h2>
-                <span class="eventView__details">Localization:  {{ event.localization }}</span>
+                <span class="eventView__details">Localization: {{ event.localization }}</span>
                 <span class="eventView__details">Start At: {{ event.startAt | date: 'short' }}</span>
                 <span class="eventView__details">End At: {{ event.endAt | date: 'short' }}</span>
             </div>
             <div class="eventView__footer">
-                <a [routerLink]="['/event', event.id]" routerLinkActive="active">
-                    <button pButton type="button" label="View" ></button>
+                <a [routerLink]="['/event', event._id]" routerLinkActive="active">
+                    <button pButton type="button" label="View"></button>
                 </a>
-                <a [routerLink]="['/event/edit', event.id]" routerLinkActive="active">
+                <a [routerLink]="['/event/edit', event._id]" routerLinkActive="active">
                     <button pButton type="button" label="Edit"></button>
                 </a>
-                <button pButton type="button" label="Remove" (click)="removeEvent(event.id)"></button>
+                <button pButton type="button" label="Remove" (click)="removeEvent(event._id)"></button>
             </div>
         </div>
 
