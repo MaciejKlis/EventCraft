@@ -5,8 +5,6 @@ import { Event } from './event.model';
 
 @Injectable()
 export class EventService {
-  private events: Event[] = [];
-
   constructor(@InjectModel('Event') private readonly eventModel: Model<Event>) { }
 
   async insertEvent(events: Event[]) {
@@ -17,58 +15,16 @@ export class EventService {
 
   async getEvents() {
     const events = await this.eventModel.find().exec();
-    return events.map(event => ({
-      _id: event.id,
-      name: event.name,
-      description: event.description,
-      organizer: event.organizer,
-      localization: event.localization,
-      startAt: event.startAt,
-      endAt: event.endAt,
-      type: event.type,
-      imageUrl: event.imageUrl,
-      createdAt: event.createdAt,
-    }));
+    return events;
   }
 
   async getSingleEvent(eventId: string) {
     const event = await this.findEvent(eventId);
-    return {
-      id: event.id,
-      name: event.name,
-      description: event.description,
-      organizer: event.organizer,
-      localization: event.localization,
-      startAt: event.startAt,
-      endAt: event.endAt,
-      type: event.type,
-      imageUrl: event.imageUrl,
-      createdAt: event.createdAt,
-    };
+    return event;
   }
 
-  async updateEvent(
-    eventId: string,
-    name: string,
-    description: string,
-    organizer: string,
-    localization: string,
-    startAt: Date,
-    endAt: Date,
-    type: string,
-    imageUrl: string,
-  ) {
-
-    await this.eventModel.updateOne({ _id: eventId }, {
-      name,
-      description,
-      organizer,
-      localization,
-      startAt,
-      endAt,
-      type,
-      imageUrl
-    })
+  async updateEvent(event: Event) {
+    const result = await this.eventModel.updateOne({ _id: event.id }, event)
   }
 
   async deleteEvent(prodId: string) {
