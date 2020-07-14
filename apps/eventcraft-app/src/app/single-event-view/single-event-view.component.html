@@ -1,6 +1,6 @@
 <div class="container" *ngIf="event$ | async as event; else loading">
     <div class="counterBox">
-        <!-- <span class="eventCounter">Time to start event </span> -->
+        <span class="eventCounter">Time to start event: {{ timeToStartString }}</span>
     </div>
     <div class="eventContainer">
         <div class="toolBox">

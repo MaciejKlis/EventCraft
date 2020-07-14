@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { RemoveEvent } from '../state/event/event.actions';
@@ -11,7 +11,7 @@ import { Observable, interval, Subscription } from 'rxjs';
   templateUrl: './single-event-view.component.html',
   styleUrls: ['./single-event-view.component.scss']
 })
-export class SingleEventViewComponent implements OnInit {
+export class SingleEventViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +21,8 @@ export class SingleEventViewComponent implements OnInit {
 
   _id: string
   event$: Observable<Event>;
-  timeToStart: string = " ";
-  startEvent: Date;
+  timeToStartString: string = " ";
+  timeInterval;
 
   dhms = (t) => {
     let days, hours, minutes, seconds;
@@ -56,16 +56,28 @@ export class SingleEventViewComponent implements OnInit {
 
   ngOnInit() {
     this._id = this.route.snapshot.paramMap.get('id');
-    this.event$ = this.store.select(EventState.selectById(this._id))
+    this.event$ = this.store.select(EventState.selectById(this._id));
 
     this.event$.subscribe(ev => {
       if (ev) {
         ev.type = this.swichtEnumToString(ev.type);
-        this.startEvent = new Date(ev.startAt)
+        this.timer(ev.startAt);
       }
     })
   }
 
+  timer(timeToStartEvent): void {
+    this.timeInterval = setInterval(() => {
+      const nowTimestamp = Date.now();
+      const eventStartAtTimestamp = Date.parse(timeToStartEvent);
+      const timeToStart = Math.floor((eventStartAtTimestamp - nowTimestamp) / 1000)
+      this.timeToStartString = this.dhms(timeToStart);
+    }, 1000)
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.timeInterval);
+  }
 
   removeEvent() {
     this.store.dispatch(new RemoveEvent(this._id))
