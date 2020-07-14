@@ -32,29 +32,8 @@ export class EventsController {
 	}
 
 	@Patch(':id')
-	async updateEvent(
-		@Param('id') eventId: string,
-		@Body('name') eventName: string,
-		@Body('description') eventDescription: string,
-		@Body('organizer') eventOrganizer: string,
-		@Body('localization') eventLocalization: string,
-		@Body('startAt') eventStartAt: Date,
-		@Body('endAt') eventEndAt: Date,
-		@Body('type') eventType: string,
-		@Body('imageUrl') eventImageUrl: string,
-	) {
-		await this.eventService.updateEvent(
-			eventId,
-			eventName,
-			eventDescription,
-			eventOrganizer,
-			eventLocalization,
-			eventStartAt,
-			eventEndAt,
-			eventType,
-			eventImageUrl
-		);
-
+	async updateEvent(@Body() event: Event) {
+		const result = await this.eventService.updateEvent(event);
 		return null;
 	}
 

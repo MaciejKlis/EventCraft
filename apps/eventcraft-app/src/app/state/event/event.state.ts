@@ -49,10 +49,7 @@ export class EventState implements NgxsOnInit {
     @Action(CreateEvents)
     createEvent({ getState, patchState }: StateContext<EventStateModel>, { eventsToAdd }: CreateEvents) {
         this.eventsService.insertEvent(eventsToAdd).subscribe(recentlyAddedEvents => {
-
             const { events } = getState();
-
-            console.log(events)
             patchState({
                 events: [
                     ...events,

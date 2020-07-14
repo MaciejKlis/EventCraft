@@ -39,8 +39,7 @@ export class EventsViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.eventSubscription = this.events$.subscribe(ev => { console.log(ev) });
-
+    this.eventSubscription = this.events$.subscribe();
   }
 
   removeEvent(idEvent: string) {
