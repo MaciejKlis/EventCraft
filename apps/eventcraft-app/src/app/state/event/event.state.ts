@@ -70,6 +70,7 @@ export class EventState implements NgxsOnInit {
 
     @Action(UpdateEvent)
     updateEvent({ getState, patchState }: StateContext<EventStateModel>, { event }: UpdateEvent) {
+        console.log(event)
         this.eventsService.updateElementById(event).subscribe();
 
         const { events } = getState();

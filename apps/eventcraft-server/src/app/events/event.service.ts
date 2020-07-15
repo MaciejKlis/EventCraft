@@ -24,7 +24,7 @@ export class EventService {
   }
 
   async updateEvent(event: Event) {
-    const result = await this.eventModel.updateOne({ _id: event.id }, event)
+    await this.eventModel.updateOne({ _id: event._id }, event)
   }
 
   async deleteEvent(prodId: string) {

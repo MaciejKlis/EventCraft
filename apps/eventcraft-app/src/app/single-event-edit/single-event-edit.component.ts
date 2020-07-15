@@ -20,6 +20,7 @@ export class SingleEventEditComponent implements OnInit {
     private actions$: Actions) { }
 
   @Select(EventState.events) events$: Observable<Event[]>
+
   eventIsLoaded = false;
   event: Event = <Event>{
     _id: '',
@@ -58,6 +59,7 @@ export class SingleEventEditComponent implements OnInit {
 
   updateEvent(event): void {
     this.event = event;
+    console.log(this.event)
     this.store.dispatch(new UpdateEvent(this.event));
   }
 }
