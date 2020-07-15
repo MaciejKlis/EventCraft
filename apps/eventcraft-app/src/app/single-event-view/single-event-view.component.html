@@ -1,6 +1,6 @@
 <div class="container" *ngIf="event$ | async as event; else loading">
     <div class="counterBox">
-        <!-- <span class="eventCounter">Time to start event </span> -->
+        <span class="eventCounter">Time to start event: {{ timeToStartString }}</span>
     </div>
     <div class="eventContainer">
         <div class="toolBox">
@@ -17,7 +17,7 @@
                 <img src="{{ event.imageUrl }}" class="eventImageBox__image">
             </div>
             <div class="eventDetailsBox">
-                <span class="eventDetailsBox__details">Localization: {{ event.localization }}</span>
+                <span class="eventDetailsBox__details">Localization: {{ event.localization.city }}</span>
                 <span class="eventDetailsBox__details">Organizer: {{ event.organizer }}</span>
                 <span class="eventDetailsBox__details">Type: {{ event.type }}</span>
                 <span class="eventDetailsBox__details">Start At: {{ event.startAt | date:'d MMM y HH:mm'}}</span>
@@ -25,6 +25,7 @@
             </div>
         </div>
         <p class="eventDescription">{{ event.description }}</p>
+        <app-map-view *ngIf="eventIsLoaded" [editable]="false" [position]="position"></app-map-view>
     </div>
 </div>
 

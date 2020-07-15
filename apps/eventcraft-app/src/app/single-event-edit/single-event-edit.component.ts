@@ -26,7 +26,11 @@ export class SingleEventEditComponent implements OnInit {
     name: '',
     description: '',
     organizer: '',
-    localization: '',
+    localization: {
+      city: '',
+      lat: 0,
+      lng: 0,
+    },
     startAt: new Date(),
     endAt: new Date(),
     type: '',

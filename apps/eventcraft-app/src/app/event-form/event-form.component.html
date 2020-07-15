@@ -9,8 +9,19 @@
   <input formControlName="organizer" class="defultInput">
 
   <label>Localization:</label>
-  <input formControlName="localization" class="defultInput">
 
+  <div formGroupName="localization" class="localizationBox">
+    <div class="localizationBox-inputs">
+      <label>City:</label>
+      <input formControlName="city" class="defultInput">
+      <label>Latitude:</label>
+      <input formControlName="lat" class="defultInput" disabled>
+      <label>longitude:</label>
+      <input formControlName="lng" class="defultInput" disabled>
+    </div>
+
+    <app-map-view [editable]="true" [position]="position" (emitPosition)="setPosition($event)"></app-map-view>
+  </div>
   <label>Event start at:</label>
   <p-calendar formControlName="startAt" [minDate]="calendar.minDateStartAt" [showTime]="calendar.showTime"
     [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-calendar>
