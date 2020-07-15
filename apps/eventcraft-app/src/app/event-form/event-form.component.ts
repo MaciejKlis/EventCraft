@@ -15,6 +15,10 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
   eventForm: FormGroup;
   calendarStartAt: Subscription;
+  position = {
+    lat: 0,
+    lng: 0
+  }
 
   calendar = {
     minDateStartAt: new Date(),
@@ -34,8 +38,12 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.eventForm = this.fb.group({
       name: [this.event.name, [Validators.required]],
       description: [this.event.description, [Validators.required]],
-      organizer: [this.event.localization, [Validators.required]],
-      localization: [this.event.organizer, [Validators.required]],
+      organizer: [this.event.organizer, [Validators.required]],
+      localization: this.fb.group({
+        city: [this.event.localization.city, [Validators.required]],
+        lat: [{ value: this.event.localization.lat, disabled: true }, [Validators.required]],
+        lng: [{ value: this.event.localization.lng, disabled: true }, [Validators.required]]
+      }),
       startAt: [this.event.startAt, [Validators.required]],
       endAt: [this.event.endAt, [Validators.required]],
       type: [this.event.type, [Validators.required]],
@@ -43,6 +51,11 @@ export class EventFormComponent implements OnInit, OnDestroy {
     })
 
     this.calendarsOnChange();
+  }
+
+  setPosition(data) {
+    this.eventForm.get('localization.lat').setValue(data.lat);
+    this.eventForm.get('localization.lng').setValue(data.lng);
   }
 
   calendarsOnChange() {
@@ -59,12 +72,13 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.event.name = this.eventForm.get('name').value;
     this.event.description = this.eventForm.get('description').value;
     this.event.organizer = this.eventForm.get('organizer').value;
-    this.event.localization = this.eventForm.get('localization').value;
+    this.event.localization.city = this.eventForm.get('localization.city').value;
+    this.event.localization.lat = this.eventForm.get('localization.lat').value;
+    this.event.localization.lng = this.eventForm.get('localization.lng').value;
     this.event.startAt = this.eventForm.get('startAt').value;
     this.event.endAt = this.eventForm.get('endAt').value;
     this.event.type = this.eventForm.get('type').value;
     this.event.imageUrl = this.eventForm.get('imageSrc').value;
-
     this.updatedEvent.emit(this.event);
   }
 

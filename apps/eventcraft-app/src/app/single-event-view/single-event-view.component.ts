@@ -23,6 +23,8 @@ export class SingleEventViewComponent implements OnInit, OnDestroy {
   event$: Observable<Event>;
   timeToStartString: string = " ";
   timeInterval;
+  eventIsLoaded = false;
+  position: { lng: number, lat: number };
 
   dhms = (t) => {
     let days, hours, minutes, seconds;
@@ -62,6 +64,13 @@ export class SingleEventViewComponent implements OnInit, OnDestroy {
       if (ev) {
         ev.type = this.swichtEnumToString(ev.type);
         this.timer(ev.startAt);
+
+        this.position = {
+          lat: ev.localization.lat,
+          lng: ev.localization.lng,
+        }
+
+        this.eventIsLoaded = true;
       }
     })
   }

@@ -24,7 +24,11 @@ export class EventCreatorComponent {
     name: "",
     description: "",
     organizer: "",
-    localization: "",
+    localization: {
+      city: "",
+      lat: 0,
+      lng: 0
+    },
     startAt: new Date(),
     endAt: new Date(),
     type: "",
@@ -55,7 +59,6 @@ export class EventCreatorComponent {
       new CreateEvents(eventsArr)
     ).subscribe(events => {
       events.length === 1 ? this.router.navigateByUrl('/event/' + events[0]._id) : this.router.navigateByUrl('search');
-    }
-    )
+    })
   }
 }

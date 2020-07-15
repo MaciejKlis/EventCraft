@@ -15,6 +15,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { GMapModule } from 'primeng/gmap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { EventCreatorComponent } from './event-creator/event-creator.component';
@@ -24,6 +25,7 @@ import { SingleEventViewComponent } from './single-event-view/single-event-view.
 import { SingleEventEditComponent } from './single-event-edit/single-event-edit.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { EventFormComponent } from './event-form/event-form.component';
+import { MapViewComponent } from './map-view/map-view.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +36,11 @@ import { EventFormComponent } from './event-form/event-form.component';
     SingleEventViewComponent,
     SingleEventEditComponent,
     LandingPageComponent,
-    EventFormComponent
+    EventFormComponent,
+    MapViewComponent
   ],
   imports: [
+    GMapModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     ButtonModule,

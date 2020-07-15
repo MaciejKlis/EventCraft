@@ -74,7 +74,11 @@ export class EventFactory {
 			name: randomName[Math.floor(Math.random() * randomName.length)],
 			description: randomDescriptions[Math.floor(Math.random() * randomDescriptions.length)],
 			organizer: randomOrganizer[Math.floor(Math.random() * randomOrganizer.length)],
-			localization: randomLocalization[Math.floor(Math.random() * randomLocalization.length)],
+			localization: {
+				city: "alaska",
+				lat: 65,
+				lng: -150,
+			},
 			startAt: startAt,
 			endAt: endAt,
 			type: randomTypes[Math.floor(Math.random() * randomTypes.length)],

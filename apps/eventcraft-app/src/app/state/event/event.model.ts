@@ -3,7 +3,11 @@ export interface Event {
     name: string;
     description: string;
     organizer: string;
-    localization: string;
+    localization: {
+        city: string,
+        lat: number,
+        lng: number,
+    }
     startAt: Date;
     endAt: Date;
     type: string;
