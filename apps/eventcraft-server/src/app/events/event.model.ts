@@ -17,7 +17,7 @@ export const EventSchema = new mongoose.Schema({
 })
 
 export interface Event extends mongoose.Document {
-  id?: number;
+  _id?: number;
   name: string;
   description: string;
   organizer: string;
