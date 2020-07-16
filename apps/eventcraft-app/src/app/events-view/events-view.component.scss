@@ -1,5 +1,5 @@
 .serachTool {
-    background: #1C1C1C;
+    background: rgba(0, 0, 0, .75);
     height: 150px;
     width: 100%;
     display: flex;
@@ -30,6 +30,7 @@
     padding: 60px 34px;
     display: flex;
     flex-wrap: wrap;
+    background: rgba(0, 0, 0, .6)
 }
 
 .eventView {

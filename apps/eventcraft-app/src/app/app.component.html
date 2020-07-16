@@ -1,2 +1,6 @@
 <app-navbar></app-navbar>
+<p-colorPicker [(ngModel)]="colorPicker" format="hex"
+  [style]="{'position': 'fixed', 'z-index': '3000', 'bottom': '40px', 'left': '40px'}" *ngIf="!isHomePage"
+  (onChange)="changeBackground()">
+</p-colorPicker>
 <router-outlet></router-outlet>
