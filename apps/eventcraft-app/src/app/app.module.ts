@@ -16,6 +16,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { GMapModule } from 'primeng/gmap';
+import { ColorPickerModule } from 'primeng/colorpicker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { EventCreatorComponent } from './event-creator/event-creator.component';
@@ -40,16 +41,17 @@ import { MapViewComponent } from './map-view/map-view.component';
     MapViewComponent
   ],
   imports: [
-    GMapModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    ButtonModule,
-    DropdownModule,
-    InputTextModule,
-    InputTextareaModule,
     CalendarModule,
-    FormsModule,
+    ColorPickerModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
+    ButtonModule,
+    InputTextareaModule,
+    InputTextModule,
+    GMapModule,
+    DropdownModule,
+    FormsModule,
     HttpClientModule,
     SelectButtonModule,
     ReactiveFormsModule,
