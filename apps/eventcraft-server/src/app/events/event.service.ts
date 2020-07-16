@@ -14,7 +14,7 @@ export class EventService {
 
 
   async getEvents() {
-    const events = await this.eventModel.find().exec();
+    const events = await this.eventModel.find({ "removed": false }).exec();
     return events;
   }
 
@@ -27,8 +27,8 @@ export class EventService {
     await this.eventModel.updateOne({ _id: event._id }, event)
   }
 
-  async deleteEvent(prodId: string) {
-    await this.eventModel.deleteOne({ _id: prodId }).exec();
+  async deleteEvent(_id: string) {
+    const say = await this.eventModel.updateOne({ _id }, { $set: { "removed": true } })
   }
 
   private async findEvent(id: string): Promise<Event> {

@@ -19,21 +19,7 @@ export class EventCreatorComponent {
     private store: Store,
   ) { }
 
-  lastId: string;
-  event: Event = {
-    name: "",
-    description: "",
-    organizer: "",
-    localization: {
-      city: "",
-      lat: 0,
-      lng: 0
-    },
-    startAt: new Date(),
-    endAt: new Date(),
-    type: "",
-    imageUrl: "",
-  }
+  event: Event;
 
   private actionSubscription: Subscription;
 

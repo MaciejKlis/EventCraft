@@ -22,27 +22,13 @@ export class SingleEventEditComponent implements OnInit {
   @Select(EventState.events) events$: Observable<Event[]>
 
   eventIsLoaded = false;
-  event: Event = <Event>{
-    _id: '',
-    name: '',
-    description: '',
-    organizer: '',
-    localization: {
-      city: '',
-      lat: 0,
-      lng: 0,
-    },
-    startAt: new Date(),
-    endAt: new Date(),
-    type: '',
-    imageUrl: '',
-  }
+  event: Event;
 
   ngOnInit() {
-    this.event._id = this.route.snapshot.paramMap.get('id');
+    const idEvent = this.route.snapshot.paramMap.get('id');
 
-    this.events$
-      .pipe(map(events => events.filter(eve => eve._id === this.event._id)[0]))
+    this.events$.pipe(
+      map(events => events.filter(eve => eve._id === idEvent)[0]))
       .subscribe(event => {
         if (event !== undefined) {
           this.event = event;
