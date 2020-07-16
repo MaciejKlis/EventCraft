@@ -13,6 +13,8 @@ export interface Event {
     type: string;
     imageUrl: string;
     createdAt?: Date;
+    removed?: boolean;
+    random?: boolean;
 }
 
 export interface EventStateModel {

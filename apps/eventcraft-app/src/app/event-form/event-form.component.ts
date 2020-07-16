@@ -35,19 +35,34 @@ export class EventFormComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
+    const event: Event = this.event || {
+      name: '',
+      description: '',
+      organizer: '',
+      localization: {
+        city: '',
+        lat: 0,
+        lng: 0,
+      },
+      startAt: new Date(),
+      endAt: new Date(),
+      type: '',
+      imageUrl: ''
+    };
+
     this.eventForm = this.fb.group({
-      name: [this.event.name, [Validators.required]],
-      description: [this.event.description, [Validators.required]],
-      organizer: [this.event.organizer, [Validators.required]],
+      name: [event.name, [Validators.required]],
+      description: [event.description, [Validators.required]],
+      organizer: [event.organizer, [Validators.required]],
       localization: this.fb.group({
-        city: [this.event.localization.city, [Validators.required]],
-        lat: [{ value: this.event.localization.lat, disabled: true }, [Validators.required]],
-        lng: [{ value: this.event.localization.lng, disabled: true }, [Validators.required]]
+        city: [event.localization.city, [Validators.required]],
+        lat: [{ value: event.localization.lat, disabled: true }, [Validators.required]],
+        lng: [{ value: event.localization.lng, disabled: true }, [Validators.required]]
       }),
-      startAt: [this.event.startAt, [Validators.required]],
-      endAt: [this.event.endAt, [Validators.required]],
-      type: [this.event.type, [Validators.required]],
-      imageSrc: [this.event.imageUrl, [Validators.required]],
+      startAt: [event.startAt, [Validators.required]],
+      endAt: [event.endAt, [Validators.required]],
+      type: [event.type, [Validators.required]],
+      imageSrc: [event.imageUrl, [Validators.required]],
     })
 
     this.calendarsOnChange();

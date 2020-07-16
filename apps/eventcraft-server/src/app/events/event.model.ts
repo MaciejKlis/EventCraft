@@ -13,7 +13,9 @@ export const EventSchema = new mongoose.Schema({
   endAt: { type: Date, required: true },
   type: { type: String, required: true },
   imageUrl: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  removed: { type: Boolean, default: false },
+  random: { type: Boolean, default: false }
 })
 
 export interface Event extends mongoose.Document {
@@ -31,4 +33,6 @@ export interface Event extends mongoose.Document {
   type: string;
   imageUrl: string;
   createdAt?: Date;
+  removed?: Boolean;
+  random?: Boolean;
 }
