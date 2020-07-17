@@ -1,4 +1,7 @@
-# EventcraftWorkspace
+
+
+# Eventcraft - Workspace
+## Live version is here: [Click to go ](https://maciejklis.github.io/eventcraft-client/)
 
 This project was generated using [Nx](https://nx.dev).
 
