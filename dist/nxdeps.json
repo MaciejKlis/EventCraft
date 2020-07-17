@@ -1,0 +1,1582 @@
+{
+  "projectGraph": {
+    "nodes": {
+      "eventcraft-app-e2e": {
+        "name": "eventcraft-app-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/eventcraft-app-e2e",
+          "sourceRoot": "apps/eventcraft-app-e2e/src",
+          "projectType": "application",
+          "architect": {
+            "e2e": {
+              "builder": "@nrwl/cypress:cypress",
+              "options": {
+                "cypressConfig": "apps/eventcraft-app-e2e/cypress.json",
+                "tsConfig": "apps/eventcraft-app-e2e/tsconfig.e2e.json",
+                "devServerTarget": "eventcraft-app:serve"
+              },
+              "configurations": {
+                "production": {
+                  "devServerTarget": "eventcraft-app:serve:production"
+                }
+              }
+            },
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "apps/eventcraft-app-e2e/tsconfig.e2e.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!apps/eventcraft-app-e2e/**"
+                ]
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/eventcraft-app-e2e/cypress.json",
+              "ext": ".json",
+              "mtime": 1594710951265.422
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/src/fixtures/example.json",
+              "ext": ".json",
+              "mtime": 1594710951266.422
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/src/integration/app.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594710951266.422
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/src/plugins/index.js",
+              "ext": ".js",
+              "mtime": 1594710951266.422
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/src/support/app.po.ts",
+              "ext": ".ts",
+              "mtime": 1594710951266.422
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/src/support/commands.ts",
+              "ext": ".ts",
+              "mtime": 1594710951267.4219
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/src/support/index.ts",
+              "ext": ".ts",
+              "mtime": 1594710951267.4219
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/tsconfig.e2e.json",
+              "ext": ".json",
+              "mtime": 1594710951268.4226
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1594710951268.4226
+            },
+            {
+              "file": "apps/eventcraft-app-e2e/tslint.json",
+              "ext": ".json",
+              "mtime": 1594710951268.4226
+            }
+          ]
+        }
+      },
+      "eventcraft-server": {
+        "name": "eventcraft-server",
+        "type": "app",
+        "data": {
+          "root": "apps/eventcraft-server",
+          "sourceRoot": "apps/eventcraft-server/src",
+          "projectType": "application",
+          "prefix": "eventcraft-server",
+          "schematics": {},
+          "architect": {
+            "build": {
+              "builder": "@nrwl/node:build",
+              "options": {
+                "outputPath": "dist/apps/eventcraft-server",
+                "main": "apps/eventcraft-server/src/main.ts",
+                "tsConfig": "apps/eventcraft-server/tsconfig.app.json",
+                "assets": [
+                  "apps/eventcraft-server/src/assets"
+                ]
+              },
+              "configurations": {
+                "production": {
+                  "optimization": true,
+                  "extractLicenses": true,
+                  "inspect": false,
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/eventcraft-server/src/environments/environment.ts",
+                      "with": "apps/eventcraft-server/src/environments/environment.prod.ts"
+                    }
+                  ]
+                }
+              }
+            },
+            "serve": {
+              "builder": "@nrwl/node:execute",
+              "options": {
+                "buildTarget": "eventcraft-server:build"
+              }
+            },
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "apps/eventcraft-server/tsconfig.app.json",
+                  "apps/eventcraft-server/tsconfig.spec.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!apps/eventcraft-server/**"
+                ]
+              }
+            },
+            "test": {
+              "builder": "@nrwl/jest:jest",
+              "options": {
+                "jestConfig": "apps/eventcraft-server/jest.config.js",
+                "tsConfig": "apps/eventcraft-server/tsconfig.spec.json",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/eventcraft-server/jest.config.js",
+              "ext": ".js",
+              "mtime": 1594710951629.7468
+            },
+            {
+              "file": "apps/eventcraft-server/src/app/.gitkeep",
+              "ext": "",
+              "mtime": 1594710951629.7468
+            },
+            {
+              "file": "apps/eventcraft-server/src/app/app.controller.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594710951629.7468
+            },
+            {
+              "file": "apps/eventcraft-server/src/app/app.module.ts",
+              "ext": ".ts",
+              "mtime": 1594710951630.746
+            },
+            {
+              "file": "apps/eventcraft-server/src/app/events/event.controller.ts",
+              "ext": ".ts",
+              "mtime": 1594827214602.88
+            },
+            {
+              "file": "apps/eventcraft-server/src/app/events/event.model.ts",
+              "ext": ".ts",
+              "mtime": 1594902516743.2366
+            },
+            {
+              "file": "apps/eventcraft-server/src/app/events/event.module.ts",
+              "ext": ".ts",
+              "mtime": 1594710951636.7446
+            },
+            {
+              "file": "apps/eventcraft-server/src/app/events/event.service.ts",
+              "ext": ".ts",
+              "mtime": 1594902516743.2366
+            },
+            {
+              "file": "apps/eventcraft-server/src/assets/.gitkeep",
+              "ext": "",
+              "mtime": 1594710951654.7388
+            },
+            {
+              "file": "apps/eventcraft-server/src/environments/environment.prod.ts",
+              "ext": ".ts",
+              "mtime": 1594710951654.7388
+            },
+            {
+              "file": "apps/eventcraft-server/src/environments/environment.ts",
+              "ext": ".ts",
+              "mtime": 1594710951655.7385
+            },
+            {
+              "file": "apps/eventcraft-server/src/main.ts",
+              "ext": ".ts",
+              "mtime": 1594978547029.5327
+            },
+            {
+              "file": "apps/eventcraft-server/tsconfig.app.json",
+              "ext": ".json",
+              "mtime": 1594710951655.7385
+            },
+            {
+              "file": "apps/eventcraft-server/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1594710951655.7385
+            },
+            {
+              "file": "apps/eventcraft-server/tsconfig.spec.json",
+              "ext": ".json",
+              "mtime": 1594710951656.7383
+            },
+            {
+              "file": "apps/eventcraft-server/tslint.json",
+              "ext": ".json",
+              "mtime": 1594710951656.7383
+            }
+          ]
+        }
+      },
+      "eventcraft-app": {
+        "name": "eventcraft-app",
+        "type": "app",
+        "data": {
+          "projectType": "application",
+          "schematics": {
+            "@nrwl/angular:component": {
+              "style": "scss"
+            }
+          },
+          "root": "apps/eventcraft-app",
+          "sourceRoot": "apps/eventcraft-app/src",
+          "prefix": "eventcraft-workspace",
+          "architect": {
+            "build": {
+              "builder": "@angular-devkit/build-angular:browser",
+              "options": {
+                "outputPath": "dist/apps/eventcraft-app",
+                "index": "apps/eventcraft-app/src/index.html",
+                "main": "apps/eventcraft-app/src/main.ts",
+                "polyfills": "apps/eventcraft-app/src/polyfills.ts",
+                "tsConfig": "apps/eventcraft-app/tsconfig.app.json",
+                "aot": true,
+                "assets": [
+                  "apps/eventcraft-app/src/favicon.ico",
+                  "apps/eventcraft-app/src/assets"
+                ],
+                "styles": [
+                  "apps/eventcraft-app/src/styles.scss",
+                  "node_modules/primeicons/primeicons.css",
+                  "node_modules/primeng/resources/themes/nova-light/theme.css",
+                  "node_modules/primeng/resources/primeng.min.css"
+                ],
+                "scripts": []
+              },
+              "configurations": {
+                "production": {
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/eventcraft-app/src/environments/environment.ts",
+                      "with": "apps/eventcraft-app/src/environments/environment.prod.ts"
+                    }
+                  ],
+                  "optimization": true,
+                  "outputHashing": "all",
+                  "sourceMap": false,
+                  "extractCss": true,
+                  "namedChunks": false,
+                  "extractLicenses": true,
+                  "vendorChunk": false,
+                  "buildOptimizer": true,
+                  "budgets": [
+                    {
+                      "type": "initial",
+                      "maximumWarning": "2mb",
+                      "maximumError": "5mb"
+                    },
+                    {
+                      "type": "anyComponentStyle",
+                      "maximumWarning": "6kb",
+                      "maximumError": "10kb"
+                    }
+                  ]
+                }
+              }
+            },
+            "serve": {
+              "builder": "@angular-devkit/build-angular:dev-server",
+              "options": {
+                "browserTarget": "eventcraft-app:build"
+              },
+              "configurations": {
+                "production": {
+                  "browserTarget": "eventcraft-app:build:production"
+                }
+              }
+            },
+            "extract-i18n": {
+              "builder": "@angular-devkit/build-angular:extract-i18n",
+              "options": {
+                "browserTarget": "eventcraft-app:build"
+              }
+            },
+            "lint": {
+              "builder": "@angular-devkit/build-angular:tslint",
+              "options": {
+                "tsConfig": [
+                  "apps/eventcraft-app/tsconfig.app.json",
+                  "apps/eventcraft-app/tsconfig.spec.json"
+                ],
+                "exclude": [
+                  "**/node_modules/**",
+                  "!apps/eventcraft-app/**"
+                ]
+              }
+            },
+            "test": {
+              "builder": "@nrwl/jest:jest",
+              "options": {
+                "jestConfig": "apps/eventcraft-app/jest.config.js",
+                "tsConfig": "apps/eventcraft-app/tsconfig.spec.json",
+                "passWithNoTests": true,
+                "setupFile": "apps/eventcraft-app/src/test-setup.ts"
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/eventcraft-app/browserslist",
+              "ext": "",
+              "mtime": 1594710951268.4226
+            },
+            {
+              "file": "apps/eventcraft-app/jest.config.js",
+              "ext": ".js",
+              "mtime": 1594710951269.422
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/app-routing.module.ts",
+              "ext": ".ts",
+              "mtime": 1594710951269.422
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/app.component.html",
+              "ext": ".html",
+              "mtime": 1594902516707.2483
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/app.component.scss",
+              "ext": ".scss",
+              "mtime": 1594902516707.2483
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/app.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594710951270.4211
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/app.component.ts",
+              "ext": ".ts",
+              "mtime": 1594902516708.2476
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/app.module.ts",
+              "ext": ".ts",
+              "mtime": 1594902516708.2476
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-creator/event-creator.component.html",
+              "ext": ".html",
+              "mtime": 1594824630294.6655
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-creator/event-creator.component.scss",
+              "ext": ".scss",
+              "mtime": 1594902516709.2476
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-creator/event-creator.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594710951292.414
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-creator/event-creator.component.ts",
+              "ext": ".ts",
+              "mtime": 1594902516710.2468
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-factory/eventFactory.ts",
+              "ext": ".ts",
+              "mtime": 1594902516710.2468
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-form/event-form.component.html",
+              "ext": ".html",
+              "mtime": 1594823592911.3062
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-form/event-form.component.scss",
+              "ext": ".scss",
+              "mtime": 1594823592911.3062
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-form/event-form.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594710951352.465
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/event-form/event-form.component.ts",
+              "ext": ".ts",
+              "mtime": 1594902516711.2466
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/events-view/events-view.component.html",
+              "ext": ".html",
+              "mtime": 1594823592912.3054
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/events-view/events-view.component.scss",
+              "ext": ".scss",
+              "mtime": 1594902516711.2466
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/events-view/events-view.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594710951397.4514
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/events-view/events-view.component.ts",
+              "ext": ".ts",
+              "mtime": 1594741294468.498
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/landing-page/landing-page.component.html",
+              "ext": ".html",
+              "mtime": 1594710951402.4492
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/landing-page/landing-page.component.scss",
+              "ext": ".scss",
+              "mtime": 1594710951402.4492
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/landing-page/landing-page.component.ts",
+              "ext": ".ts",
+              "mtime": 1594710951403.4492
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/map-view/map-view.component.html",
+              "ext": ".html",
+              "mtime": 1594823592912.3054
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/map-view/map-view.component.scss",
+              "ext": ".scss",
+              "mtime": 1594823592913.3052
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/map-view/map-view.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594823592913.3052
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/map-view/map-view.component.ts",
+              "ext": ".ts",
+              "mtime": 1594823592913.3052
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/navbar/navbar.component.html",
+              "ext": ".html",
+              "mtime": 1594902516712.2466
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/navbar/navbar.component.scss",
+              "ext": ".scss",
+              "mtime": 1594710951403.4492
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/navbar/navbar.component.spec.ts",
+              "ext": ".ts",
+              "mtime": 1594710951403.4492
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/navbar/navbar.component.ts",
+              "ext": ".ts",
+              "mtime": 1594710951404.4485
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/single-event-edit/single-event-edit.component.html",
+              "ext": ".html",
+              "mtime": 1594710951408.4475
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/single-event-edit/single-event-edit.component.scss",
+              "ext": ".scss",
+              "mtime": 1594902516712.2466
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/single-event-edit/single-event-edit.component.ts",
+              "ext": ".ts",
+              "mtime": 1594902516723.2432
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/single-event-view/single-event-view.component.html",
+              "ext": ".html",
+              "mtime": 1594823592914.3047
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/single-event-view/single-event-view.component.scss",
+              "ext": ".scss",
+              "mtime": 1594801619633.3188
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/single-event-view/single-event-view.component.ts",
+              "ext": ".ts",
+              "mtime": 1594823592915.3052
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/state/event/event.actions.ts",
+              "ext": ".ts",
+              "mtime": 1594710951579.7632
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/state/event/event.model.ts",
+              "ext": ".ts",
+              "mtime": 1594902516723.2432
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/state/event/event.state.ts",
+              "ext": ".ts",
+              "mtime": 1594885417615.939
+            },
+            {
+              "file": "apps/eventcraft-app/src/app/state/event/events.service.ts",
+              "ext": ".ts",
+              "mtime": 1594741294470.4973
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/.gitkeep",
+              "ext": "",
+              "mtime": 1594710951619.7502
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/1.jpg",
+              "ext": ".jpg",
+              "mtime": 1594710951620.7502
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/2.jpg",
+              "ext": ".jpg",
+              "mtime": 1594710951621.7495
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/3.jpg",
+              "ext": ".jpg",
+              "mtime": 1594710951622.7495
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/4.jpg",
+              "ext": ".jpg",
+              "mtime": 1594710951623.749
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/5.jpg",
+              "ext": ".jpg",
+              "mtime": 1594710951623.749
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/6.jpg",
+              "ext": ".jpg",
+              "mtime": 1594710951624.7483
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/argyle.png",
+              "ext": ".png",
+              "mtime": 1594710951625.748
+            },
+            {
+              "file": "apps/eventcraft-app/src/assets/logo.svg",
+              "ext": ".svg",
+              "mtime": 1594710951625.748
+            },
+            {
+              "file": "apps/eventcraft-app/src/environments/environment.prod.ts",
+              "ext": ".ts",
+              "mtime": 1594710951626.7478
+            },
+            {
+              "file": "apps/eventcraft-app/src/environments/environment.ts",
+              "ext": ".ts",
+              "mtime": 1594710951626.7478
+            },
+            {
+              "file": "apps/eventcraft-app/src/favicon.ico",
+              "ext": ".ico",
+              "mtime": 1594710951626.7478
+            },
+            {
+              "file": "apps/eventcraft-app/src/index.html",
+              "ext": ".html",
+              "mtime": 1594823592916.304
+            },
+            {
+              "file": "apps/eventcraft-app/src/main.ts",
+              "ext": ".ts",
+              "mtime": 1594710951627.7476
+            },
+            {
+              "file": "apps/eventcraft-app/src/polyfills.ts",
+              "ext": ".ts",
+              "mtime": 1594710951627.7476
+            },
+            {
+              "file": "apps/eventcraft-app/src/styles.scss",
+              "ext": ".scss",
+              "mtime": 1594710951627.7476
+            },
+            {
+              "file": "apps/eventcraft-app/src/test-setup.ts",
+              "ext": ".ts",
+              "mtime": 1594710951627.7476
+            },
+            {
+              "file": "apps/eventcraft-app/tsconfig.app.json",
+              "ext": ".json",
+              "mtime": 1594710951628.747
+            },
+            {
+              "file": "apps/eventcraft-app/tsconfig.json",
+              "ext": ".json",
+              "mtime": 1594710951628.747
+            },
+            {
+              "file": "apps/eventcraft-app/tsconfig.spec.json",
+              "ext": ".json",
+              "mtime": 1594710951628.747
+            },
+            {
+              "file": "apps/eventcraft-app/tslint.json",
+              "ext": ".json",
+              "mtime": 1594710951629.7468
+            }
+          ]
+        }
+      },
+      "@angular/animations": {
+        "type": "npm",
+        "name": "@angular/animations",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular/cdk": {
+        "type": "npm",
+        "name": "@angular/cdk",
+        "data": {
+          "version": "^9.1.1",
+          "files": []
+        }
+      },
+      "@angular/common": {
+        "type": "npm",
+        "name": "@angular/common",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular/compiler": {
+        "type": "npm",
+        "name": "@angular/compiler",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular/core": {
+        "type": "npm",
+        "name": "@angular/core",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular/forms": {
+        "type": "npm",
+        "name": "@angular/forms",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular/platform-browser": {
+        "type": "npm",
+        "name": "@angular/platform-browser",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular/platform-browser-dynamic": {
+        "type": "npm",
+        "name": "@angular/platform-browser-dynamic",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular/router": {
+        "type": "npm",
+        "name": "@angular/router",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@nestjs/common": {
+        "type": "npm",
+        "name": "@nestjs/common",
+        "data": {
+          "version": "^6.8.3",
+          "files": []
+        }
+      },
+      "@nestjs/core": {
+        "type": "npm",
+        "name": "@nestjs/core",
+        "data": {
+          "version": "^6.8.3",
+          "files": []
+        }
+      },
+      "@nestjs/mongoose": {
+        "type": "npm",
+        "name": "@nestjs/mongoose",
+        "data": {
+          "version": "^6.3.1",
+          "files": []
+        }
+      },
+      "@nestjs/platform-express": {
+        "type": "npm",
+        "name": "@nestjs/platform-express",
+        "data": {
+          "version": "^6.8.3",
+          "files": []
+        }
+      },
+      "@ngxs/store": {
+        "type": "npm",
+        "name": "@ngxs/store",
+        "data": {
+          "version": "^3.6.2",
+          "files": []
+        }
+      },
+      "@nrwl/angular": {
+        "type": "npm",
+        "name": "@nrwl/angular",
+        "data": {
+          "version": "^9.0.4",
+          "files": []
+        }
+      },
+      "core-js": {
+        "type": "npm",
+        "name": "core-js",
+        "data": {
+          "version": "^2.5.4",
+          "files": []
+        }
+      },
+      "mongoose": {
+        "type": "npm",
+        "name": "mongoose",
+        "data": {
+          "version": "^5.9.3",
+          "files": []
+        }
+      },
+      "primeicons": {
+        "type": "npm",
+        "name": "primeicons",
+        "data": {
+          "version": "^2.0.0",
+          "files": []
+        }
+      },
+      "primeng": {
+        "type": "npm",
+        "name": "primeng",
+        "data": {
+          "version": "^9.0.0",
+          "files": []
+        }
+      },
+      "reflect-metadata": {
+        "type": "npm",
+        "name": "reflect-metadata",
+        "data": {
+          "version": "^0.1.13",
+          "files": []
+        }
+      },
+      "rxjs": {
+        "type": "npm",
+        "name": "rxjs",
+        "data": {
+          "version": "~6.5.0",
+          "files": []
+        }
+      },
+      "zone.js": {
+        "type": "npm",
+        "name": "zone.js",
+        "data": {
+          "version": "^0.10.2",
+          "files": []
+        }
+      },
+      "@angular/cli": {
+        "type": "npm",
+        "name": "@angular/cli",
+        "data": {
+          "version": "9.0.1",
+          "files": []
+        }
+      },
+      "@nrwl/workspace": {
+        "type": "npm",
+        "name": "@nrwl/workspace",
+        "data": {
+          "version": "9.0.4",
+          "files": []
+        }
+      },
+      "@types/node": {
+        "type": "npm",
+        "name": "@types/node",
+        "data": {
+          "version": "~8.9.4",
+          "files": []
+        }
+      },
+      "dotenv": {
+        "type": "npm",
+        "name": "dotenv",
+        "data": {
+          "version": "6.2.0",
+          "files": []
+        }
+      },
+      "ts-node": {
+        "type": "npm",
+        "name": "ts-node",
+        "data": {
+          "version": "~7.0.0",
+          "files": []
+        }
+      },
+      "tslint": {
+        "type": "npm",
+        "name": "tslint",
+        "data": {
+          "version": "~5.11.0",
+          "files": []
+        }
+      },
+      "eslint": {
+        "type": "npm",
+        "name": "eslint",
+        "data": {
+          "version": "6.1.0",
+          "files": []
+        }
+      },
+      "typescript": {
+        "type": "npm",
+        "name": "typescript",
+        "data": {
+          "version": "~3.7.4",
+          "files": []
+        }
+      },
+      "prettier": {
+        "type": "npm",
+        "name": "prettier",
+        "data": {
+          "version": "1.18.2",
+          "files": []
+        }
+      },
+      "@angular/compiler-cli": {
+        "type": "npm",
+        "name": "@angular/compiler-cli",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular/language-service": {
+        "type": "npm",
+        "name": "@angular/language-service",
+        "data": {
+          "version": "9.0.0",
+          "files": []
+        }
+      },
+      "@angular-devkit/build-angular": {
+        "type": "npm",
+        "name": "@angular-devkit/build-angular",
+        "data": {
+          "version": "0.900.1",
+          "files": []
+        }
+      },
+      "codelyzer": {
+        "type": "npm",
+        "name": "codelyzer",
+        "data": {
+          "version": "~5.0.1",
+          "files": []
+        }
+      },
+      "jest-preset-angular": {
+        "type": "npm",
+        "name": "jest-preset-angular",
+        "data": {
+          "version": "8.0.0",
+          "files": []
+        }
+      },
+      "@nrwl/jest": {
+        "type": "npm",
+        "name": "@nrwl/jest",
+        "data": {
+          "version": "9.0.4",
+          "files": []
+        }
+      },
+      "jest": {
+        "type": "npm",
+        "name": "jest",
+        "data": {
+          "version": "24.9.0",
+          "files": []
+        }
+      },
+      "@types/jest": {
+        "type": "npm",
+        "name": "@types/jest",
+        "data": {
+          "version": "24.9.1",
+          "files": []
+        }
+      },
+      "ts-jest": {
+        "type": "npm",
+        "name": "ts-jest",
+        "data": {
+          "version": "24.0.0",
+          "files": []
+        }
+      },
+      "cypress": {
+        "type": "npm",
+        "name": "cypress",
+        "data": {
+          "version": "^3.8.2",
+          "files": []
+        }
+      },
+      "@nrwl/cypress": {
+        "type": "npm",
+        "name": "@nrwl/cypress",
+        "data": {
+          "version": "9.0.4",
+          "files": []
+        }
+      },
+      "@nrwl/node": {
+        "type": "npm",
+        "name": "@nrwl/node",
+        "data": {
+          "version": "9.0.4",
+          "files": []
+        }
+      },
+      "@nestjs/schematics": {
+        "type": "npm",
+        "name": "@nestjs/schematics",
+        "data": {
+          "version": "^6.7.0",
+          "files": []
+        }
+      },
+      "@nestjs/testing": {
+        "type": "npm",
+        "name": "@nestjs/testing",
+        "data": {
+          "version": "^6.8.3",
+          "files": []
+        }
+      },
+      "@nrwl/nest": {
+        "type": "npm",
+        "name": "@nrwl/nest",
+        "data": {
+          "version": "9.0.4",
+          "files": []
+        }
+      }
+    },
+    "dependencies": {
+      "eventcraft-app-e2e": [
+        {
+          "type": "implicit",
+          "source": "eventcraft-app-e2e",
+          "target": "eventcraft-app"
+        }
+      ],
+      "eventcraft-server": [
+        {
+          "type": "static",
+          "source": "eventcraft-server",
+          "target": "@nestjs/testing"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-server",
+          "target": "@nestjs/common"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-server",
+          "target": "@nestjs/mongoose"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-server",
+          "target": "mongoose"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-server",
+          "target": "@nestjs/core"
+        }
+      ],
+      "eventcraft-app": [
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "@angular/core"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "@angular/router"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "@ngxs/store"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "rxjs"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "@angular/platform-browser"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "@angular/forms"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "@angular/common"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "primeng"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "@angular/platform-browser-dynamic"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "zone.js"
+        },
+        {
+          "type": "static",
+          "source": "eventcraft-app",
+          "target": "jest-preset-angular"
+        }
+      ]
+    }
+  },
+  "fileMap": {
+    "eventcraft-app-e2e": [
+      {
+        "file": "apps/eventcraft-app-e2e/cypress.json",
+        "ext": ".json",
+        "mtime": 1594710951265.422
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/src/fixtures/example.json",
+        "ext": ".json",
+        "mtime": 1594710951266.422
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/src/integration/app.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594710951266.422
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/src/plugins/index.js",
+        "ext": ".js",
+        "mtime": 1594710951266.422
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/src/support/app.po.ts",
+        "ext": ".ts",
+        "mtime": 1594710951266.422
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/src/support/commands.ts",
+        "ext": ".ts",
+        "mtime": 1594710951267.4219
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/src/support/index.ts",
+        "ext": ".ts",
+        "mtime": 1594710951267.4219
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/tsconfig.e2e.json",
+        "ext": ".json",
+        "mtime": 1594710951268.4226
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1594710951268.4226
+      },
+      {
+        "file": "apps/eventcraft-app-e2e/tslint.json",
+        "ext": ".json",
+        "mtime": 1594710951268.4226
+      }
+    ],
+    "eventcraft-server": [
+      {
+        "file": "apps/eventcraft-server/jest.config.js",
+        "ext": ".js",
+        "mtime": 1594710951629.7468
+      },
+      {
+        "file": "apps/eventcraft-server/src/app/.gitkeep",
+        "ext": "",
+        "mtime": 1594710951629.7468
+      },
+      {
+        "file": "apps/eventcraft-server/src/app/app.controller.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594710951629.7468
+      },
+      {
+        "file": "apps/eventcraft-server/src/app/app.module.ts",
+        "ext": ".ts",
+        "mtime": 1594710951630.746
+      },
+      {
+        "file": "apps/eventcraft-server/src/app/events/event.controller.ts",
+        "ext": ".ts",
+        "mtime": 1594827214602.88
+      },
+      {
+        "file": "apps/eventcraft-server/src/app/events/event.model.ts",
+        "ext": ".ts",
+        "mtime": 1594902516743.2366
+      },
+      {
+        "file": "apps/eventcraft-server/src/app/events/event.module.ts",
+        "ext": ".ts",
+        "mtime": 1594710951636.7446
+      },
+      {
+        "file": "apps/eventcraft-server/src/app/events/event.service.ts",
+        "ext": ".ts",
+        "mtime": 1594902516743.2366
+      },
+      {
+        "file": "apps/eventcraft-server/src/assets/.gitkeep",
+        "ext": "",
+        "mtime": 1594710951654.7388
+      },
+      {
+        "file": "apps/eventcraft-server/src/environments/environment.prod.ts",
+        "ext": ".ts",
+        "mtime": 1594710951654.7388
+      },
+      {
+        "file": "apps/eventcraft-server/src/environments/environment.ts",
+        "ext": ".ts",
+        "mtime": 1594710951655.7385
+      },
+      {
+        "file": "apps/eventcraft-server/src/main.ts",
+        "ext": ".ts",
+        "mtime": 1594978547029.5327
+      },
+      {
+        "file": "apps/eventcraft-server/tsconfig.app.json",
+        "ext": ".json",
+        "mtime": 1594710951655.7385
+      },
+      {
+        "file": "apps/eventcraft-server/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1594710951655.7385
+      },
+      {
+        "file": "apps/eventcraft-server/tsconfig.spec.json",
+        "ext": ".json",
+        "mtime": 1594710951656.7383
+      },
+      {
+        "file": "apps/eventcraft-server/tslint.json",
+        "ext": ".json",
+        "mtime": 1594710951656.7383
+      }
+    ],
+    "eventcraft-app": [
+      {
+        "file": "apps/eventcraft-app/browserslist",
+        "ext": "",
+        "mtime": 1594710951268.4226
+      },
+      {
+        "file": "apps/eventcraft-app/jest.config.js",
+        "ext": ".js",
+        "mtime": 1594710951269.422
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/app-routing.module.ts",
+        "ext": ".ts",
+        "mtime": 1594710951269.422
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/app.component.html",
+        "ext": ".html",
+        "mtime": 1594902516707.2483
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/app.component.scss",
+        "ext": ".scss",
+        "mtime": 1594902516707.2483
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/app.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594710951270.4211
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/app.component.ts",
+        "ext": ".ts",
+        "mtime": 1594902516708.2476
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/app.module.ts",
+        "ext": ".ts",
+        "mtime": 1594902516708.2476
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-creator/event-creator.component.html",
+        "ext": ".html",
+        "mtime": 1594824630294.6655
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-creator/event-creator.component.scss",
+        "ext": ".scss",
+        "mtime": 1594902516709.2476
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-creator/event-creator.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594710951292.414
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-creator/event-creator.component.ts",
+        "ext": ".ts",
+        "mtime": 1594902516710.2468
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-factory/eventFactory.ts",
+        "ext": ".ts",
+        "mtime": 1594902516710.2468
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-form/event-form.component.html",
+        "ext": ".html",
+        "mtime": 1594823592911.3062
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-form/event-form.component.scss",
+        "ext": ".scss",
+        "mtime": 1594823592911.3062
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-form/event-form.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594710951352.465
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/event-form/event-form.component.ts",
+        "ext": ".ts",
+        "mtime": 1594902516711.2466
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/events-view/events-view.component.html",
+        "ext": ".html",
+        "mtime": 1594823592912.3054
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/events-view/events-view.component.scss",
+        "ext": ".scss",
+        "mtime": 1594902516711.2466
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/events-view/events-view.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594710951397.4514
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/events-view/events-view.component.ts",
+        "ext": ".ts",
+        "mtime": 1594741294468.498
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/landing-page/landing-page.component.html",
+        "ext": ".html",
+        "mtime": 1594710951402.4492
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/landing-page/landing-page.component.scss",
+        "ext": ".scss",
+        "mtime": 1594710951402.4492
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/landing-page/landing-page.component.ts",
+        "ext": ".ts",
+        "mtime": 1594710951403.4492
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/map-view/map-view.component.html",
+        "ext": ".html",
+        "mtime": 1594823592912.3054
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/map-view/map-view.component.scss",
+        "ext": ".scss",
+        "mtime": 1594823592913.3052
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/map-view/map-view.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594823592913.3052
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/map-view/map-view.component.ts",
+        "ext": ".ts",
+        "mtime": 1594823592913.3052
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/navbar/navbar.component.html",
+        "ext": ".html",
+        "mtime": 1594902516712.2466
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/navbar/navbar.component.scss",
+        "ext": ".scss",
+        "mtime": 1594710951403.4492
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/navbar/navbar.component.spec.ts",
+        "ext": ".ts",
+        "mtime": 1594710951403.4492
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/navbar/navbar.component.ts",
+        "ext": ".ts",
+        "mtime": 1594710951404.4485
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/single-event-edit/single-event-edit.component.html",
+        "ext": ".html",
+        "mtime": 1594710951408.4475
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/single-event-edit/single-event-edit.component.scss",
+        "ext": ".scss",
+        "mtime": 1594902516712.2466
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/single-event-edit/single-event-edit.component.ts",
+        "ext": ".ts",
+        "mtime": 1594902516723.2432
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/single-event-view/single-event-view.component.html",
+        "ext": ".html",
+        "mtime": 1594823592914.3047
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/single-event-view/single-event-view.component.scss",
+        "ext": ".scss",
+        "mtime": 1594801619633.3188
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/single-event-view/single-event-view.component.ts",
+        "ext": ".ts",
+        "mtime": 1594823592915.3052
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/state/event/event.actions.ts",
+        "ext": ".ts",
+        "mtime": 1594710951579.7632
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/state/event/event.model.ts",
+        "ext": ".ts",
+        "mtime": 1594902516723.2432
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/state/event/event.state.ts",
+        "ext": ".ts",
+        "mtime": 1594885417615.939
+      },
+      {
+        "file": "apps/eventcraft-app/src/app/state/event/events.service.ts",
+        "ext": ".ts",
+        "mtime": 1594741294470.4973
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/.gitkeep",
+        "ext": "",
+        "mtime": 1594710951619.7502
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/1.jpg",
+        "ext": ".jpg",
+        "mtime": 1594710951620.7502
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/2.jpg",
+        "ext": ".jpg",
+        "mtime": 1594710951621.7495
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/3.jpg",
+        "ext": ".jpg",
+        "mtime": 1594710951622.7495
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/4.jpg",
+        "ext": ".jpg",
+        "mtime": 1594710951623.749
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/5.jpg",
+        "ext": ".jpg",
+        "mtime": 1594710951623.749
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/6.jpg",
+        "ext": ".jpg",
+        "mtime": 1594710951624.7483
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/argyle.png",
+        "ext": ".png",
+        "mtime": 1594710951625.748
+      },
+      {
+        "file": "apps/eventcraft-app/src/assets/logo.svg",
+        "ext": ".svg",
+        "mtime": 1594710951625.748
+      },
+      {
+        "file": "apps/eventcraft-app/src/environments/environment.prod.ts",
+        "ext": ".ts",
+        "mtime": 1594710951626.7478
+      },
+      {
+        "file": "apps/eventcraft-app/src/environments/environment.ts",
+        "ext": ".ts",
+        "mtime": 1594710951626.7478
+      },
+      {
+        "file": "apps/eventcraft-app/src/favicon.ico",
+        "ext": ".ico",
+        "mtime": 1594710951626.7478
+      },
+      {
+        "file": "apps/eventcraft-app/src/index.html",
+        "ext": ".html",
+        "mtime": 1594823592916.304
+      },
+      {
+        "file": "apps/eventcraft-app/src/main.ts",
+        "ext": ".ts",
+        "mtime": 1594710951627.7476
+      },
+      {
+        "file": "apps/eventcraft-app/src/polyfills.ts",
+        "ext": ".ts",
+        "mtime": 1594710951627.7476
+      },
+      {
+        "file": "apps/eventcraft-app/src/styles.scss",
+        "ext": ".scss",
+        "mtime": 1594710951627.7476
+      },
+      {
+        "file": "apps/eventcraft-app/src/test-setup.ts",
+        "ext": ".ts",
+        "mtime": 1594710951627.7476
+      },
+      {
+        "file": "apps/eventcraft-app/tsconfig.app.json",
+        "ext": ".json",
+        "mtime": 1594710951628.747
+      },
+      {
+        "file": "apps/eventcraft-app/tsconfig.json",
+        "ext": ".json",
+        "mtime": 1594710951628.747
+      },
+      {
+        "file": "apps/eventcraft-app/tsconfig.spec.json",
+        "ext": ".json",
+        "mtime": 1594710951628.747
+      },
+      {
+        "file": "apps/eventcraft-app/tslint.json",
+        "ext": ".json",
+        "mtime": 1594710951629.7468
+      }
+    ]
+  }
+}

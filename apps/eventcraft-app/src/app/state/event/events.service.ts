@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Event } from './event.model';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ export class EventsService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly apiUrl = 'http://localhost:3333/api/events/'
+  private readonly apiUrl = environment + '/events/'
 
   public getAllEvents() {
     return this.http.get<Event[]>(this.apiUrl)

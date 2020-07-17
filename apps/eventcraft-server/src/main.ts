@@ -13,6 +13,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {
+    console.log("Port app" + process.env.PORT)
     console.log(port)
     console.log('Listening at port:' + port);
   });
