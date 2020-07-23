@@ -1,12 +1,18 @@
 .counterBox {
     background: #1C1C1C;
-    height: 70px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 0;
+    
+    @media screen and (max-width: 1050px) {
+        height: auto;
+
+    }
 
     .eventCounter {
+        text-align: center;
         font-family: Volkhov;
         font-size: 43px;
         line-height: 55px;
@@ -21,7 +27,7 @@
     min-height: calc(100vh - 130px);
     margin: 0 auto;
     background: url('../../assets/argyle.png');
-    padding: 0 34px;
+    padding: 20px 34px 0 34px;
 
     .toolBox {
         padding-top: 10px;
@@ -51,16 +57,29 @@
     .eventMainBox {
         display: flex;
 
+        @media screen and (max-width: 1050px) {
+            flex-direction: column;
+        }
+
         .eventImageBox {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 630px;
             height: 370px;
+
+            @media screen and (max-width: 1050px) {
+                width: 100%;
+                margin-bottom: 20px;
+            }
             
             &__image {
                 max-width: 630px;
                 max-height: 360px;
+                
+                @media screen and (max-width: 1050px) {
+                    max-width: 100%;
+                }
             }
         }
 

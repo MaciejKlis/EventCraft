@@ -3,6 +3,10 @@
     height: 150px;
     width: 100%;
     display: flex;
+    
+    @media screen and (max-width: 991px){
+        flex-direction: column;
+    }
 
     &__half {
         flex-grow: 1;
@@ -29,6 +33,7 @@
     background: url('../../assets/argyle.png');
     padding: 60px 34px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     background: rgba(0, 0, 0, .6)
 }
