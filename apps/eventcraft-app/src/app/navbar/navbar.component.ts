@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  ngOnInit() {}
+  ngOnInit() { }
 
-  constructor(){}
+  mobileMenuIsHidden = true;
+
+  constructor() { }
+
+  toggleSubmenu(event): void {
+    this.mobileMenuIsHidden === true ? this.mobileMenuIsHidden = false : this.mobileMenuIsHidden = true;
+  }
 }

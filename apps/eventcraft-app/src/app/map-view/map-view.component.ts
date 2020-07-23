@@ -24,7 +24,7 @@ export class MapViewComponent implements OnInit {
         new google.maps.Marker({ position: { lat: this.position.lat, lng: this.position.lng } })
       ];
 
-      this.mapOptions.zoom = 12;
+      this.mapOptions.zoom = 5;
     } else {
       this.mapOptions.zoom = 1;
     }

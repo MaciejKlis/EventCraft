@@ -4,10 +4,13 @@
             <img src="../../assets/logo.svg" alt="">
         </a>
     </div>
-    <div class="navBox">
+    <div class="navBox" [ngStyle]="{'display': mobileMenuIsHidden ? 'none' : 'flex' }">
         <a class="navBox__anchor" routerLink="/" routerLinkActive="active">Home</a>
         <a class="navBox__anchor" routerLink="/search" routerLinkActive="active">Search events</a>
         <a class="navBox__anchor" routerLink="/create" routerLinkActive="active">Create event</a>
     </div>
-    <div class="spacer"></div>
+    <div class="spacer hamburgerBox">
+        <i [ngClass]="mobileMenuIsHidden ? 'pi pi-bars' : 'pi pi-times'" style="font-size: 2em;"
+            (click)="toggleSubmenu($event)"></i>
+    </div>
 </nav>

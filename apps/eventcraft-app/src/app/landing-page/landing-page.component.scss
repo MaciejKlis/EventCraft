@@ -66,6 +66,10 @@
 			line-height: 124px;
 			color: #FFFFFF;
 			text-align: center;
+
+			@media screen and (max-width: 760px) {
+				font-size: 40px;
+			} 
 		}
 
 		h2 {
@@ -78,6 +82,10 @@
 			line-height: 62px;
 			color: #FFFFFF;
 			text-align: center;
+			
+			@media screen and (max-width: 760px) {
+				font-size: 20px;
+			} 
 		}
 	}
 }

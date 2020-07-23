@@ -32,10 +32,19 @@ button {
   padding: 10px;
   border: 1px solid #fff;
 
+  @media screen and (max-width: 1050px) {
+    flex-direction: column;
+  }
+
   &-inputs {
     width: 400px;
     display: flex;
     flex-direction: column;
     margin-right: 30px;
+    
+    @media screen and (max-width: 1050px) {
+      width: 100%;
+      margin-bottom: 30px;
+    }
   }
 }

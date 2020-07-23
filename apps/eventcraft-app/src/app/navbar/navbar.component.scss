@@ -21,19 +21,56 @@ nav{
     }
 
     .navBox {
-        display: flex;
         align-items: center;
+
+        @media screen and (min-width: 992px){
+            display: flex !important;
+        }
+
+        @media screen and (max-width: 991px){
+            display: none;
+            position: absolute;
+            top: 60px;
+            height: calc(100vh - 60px);
+            right: 0;
+            width: 300px;
+            flex-direction: column;
+            align-items: flex-start;
+            background: rgba(0, 0, 0, 0.9);
+        }
 
         &__anchor {
             font-family: Volkhov;
-            font-style: normal;
-            font-weight: normal;
             font-size: 20px;
             line-height: 28px;
             margin: 0 22px;
-            text-transform: capitalize;
             color: #FFFFFF;
             text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.7);
+            
+            @media screen and (max-width: 991px){
+                margin: 15px 30px;
+            }
+        }
+    }
+
+    .displayFlex {
+        display: flex;
+    }
+
+    .hamburgerBox {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 20px;
+        
+        i {
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+
+            @media screen and (min-width: 992px){
+                display: none;
+            }
         }
     }
 }

@@ -37,13 +37,13 @@ export class EventFactory {
 		]
 
 		let randomLocalization = [
-			'Warsaw',
-			'Chicago',
-			'Berlin',
-			'Moscow',
-			'Paris',
-			'Madrid',
-			'Wien'
+			{ city: 'Warsaw', lat: 52.2329172, lng: 20.9911555 },
+			{ city: 'Chicago', lat: 41.883228, lng: -87.632401 },
+			{ city: 'Berlin', lat: 52.520008, lng: 13.404954 },
+			{ city: 'Moscow', lat: 55.755825, lng: 37.617298 },
+			{ city: 'Paris', lat: 48.856613, lng: 2.352222 },
+			{ city: 'Madrid', lat: -29.102940, lng: -56.554611 },
+			{ city: 'Wien', lat: 48.2203445, lng: 16.09988 }
 		]
 
 		let randomTypes = [
@@ -56,7 +56,6 @@ export class EventFactory {
 
 		let randomImgs = [
 			'https://media2.fdncms.com/stranger/imager/u/large/40626741/chbp_17_day_2_-_image_joshua_lewis-21_copy.jpg',
-			'http://zesportemnatak.pl/wp-content/uploads/2018/11/event-12-870x550.jpg',
 			'https://www.hsuevents.com/images/ogimage.jpg',
 			'https://warsawnow.pl/wp-content/uploads/2019/07/kino-letnie-w-lazienkach.jpg',
 			'http://i1288.photobucket.com/albums/b485/Wirtualne_Pniewy/3krolowie/aktywniplus50/bzdr/LA/czyt/kino-3_zpswozaimis.jpg',
@@ -74,11 +73,7 @@ export class EventFactory {
 			name: randomName[Math.floor(Math.random() * randomName.length)],
 			description: randomDescriptions[Math.floor(Math.random() * randomDescriptions.length)],
 			organizer: randomOrganizer[Math.floor(Math.random() * randomOrganizer.length)],
-			localization: {
-				city: "alaska",
-				lat: 65,
-				lng: -150,
-			},
+			localization: randomLocalization[Math.floor(Math.random() * randomLocalization.length)],
 			startAt: startAt,
 			endAt: endAt,
 			type: randomTypes[Math.floor(Math.random() * randomTypes.length)],
