@@ -19,8 +19,22 @@ export class EventService {
   }
 
   async getSingleEvent(eventId: string) {
-    const event = await this.findEvent(eventId);
-    return event;
+    return await this.eventModel.findById(eventId);
+  }
+
+  async getPage(pageNumber, amountOfResults) {
+    const amountOfRemoved = await this.eventModel.find({ "removed": true }).count();
+    const events = await this.eventModel
+      .find({ "removed": true })
+      .skip(pageNumber > 0 ? (pageNumber - 1) * amountOfResults : 0)
+      .limit(amountOfResults);
+
+    const results = {
+      amountOfRemoved,
+      events
+    }
+
+    return results;
   }
 
   async updateEvent(event: Event) {
@@ -28,22 +42,6 @@ export class EventService {
   }
 
   async deleteEvent(_id: string) {
-    const say = await this.eventModel.updateOne({ _id }, { $set: { "removed": true } })
-  }
-
-  private async findEvent(id: string): Promise<Event> {
-    let event;
-
-    try {
-      event = await this.eventModel.findById(id);
-    } catch (error) {
-      throw new NotFoundException('Could not find event.');
-    }
-
-    if (!event) {
-      throw new NotFoundException('Could not find event.');
-    }
-
-    return event;
+    await this.eventModel.updateOne({ _id }, { $set: { "removed": true } })
   }
 }
