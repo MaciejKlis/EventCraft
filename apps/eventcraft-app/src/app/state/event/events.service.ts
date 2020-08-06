@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Event } from './event.model';
 import { environment } from '../../../environments/environment'
 
@@ -31,5 +30,13 @@ export class EventsService {
 
   public updateElementById(event: Event) {
     return this.http.patch<Event>(this.apiUrl + event._id, event);
+  }
+
+  public getPageOfRemovedEvents(pageNumber, amountOfResults) {
+    let params = new HttpParams();
+    params = params.append('pageNumber', pageNumber);
+    params = params.append('amountOfResults', amountOfResults);
+
+    return this.http.get<Event>(this.apiUrl + 'history', { params: params });
   }
 }

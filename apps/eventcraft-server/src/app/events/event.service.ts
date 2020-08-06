@@ -29,10 +29,10 @@ export class EventService {
       .skip(pageNumber > 0 ? (pageNumber - 1) * amountOfResults : 0)
       .limit(amountOfResults);
 
-    const results = {
+    const results = [
       amountOfRemoved,
       events
-    }
+    ]
 
     return results;
   }

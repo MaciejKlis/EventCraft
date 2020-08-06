@@ -5,6 +5,7 @@ import { EventsViewComponent } from './events-view/events-view.component';
 import { SingleEventViewComponent } from './single-event-view/single-event-view.component';
 import { SingleEventEditComponent } from './single-event-edit/single-event-edit.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HistoryOfEventsComponent } from './history-of-events/history-of-events.component';
 
 
 const routes: Routes = [
@@ -16,9 +17,13 @@ const routes: Routes = [
     path: 'search',
     component: EventsViewComponent
   },
-  { 
-    path: 'create', 
-    component: EventCreatorComponent 
+  {
+    path: 'create',
+    component: EventCreatorComponent
+  },
+  {
+    path: 'history',
+    component: HistoryOfEventsComponent
   },
   {
     path: 'event/:id',

@@ -1,75 +1,83 @@
-nav{
+:host{ 
     position: absolute;
     z-index: 30;
     height: 60px;
     width: 100%;
     display: flex;
     background: rgba(0, 0, 0, 0.35);
+    top: 0;
 
-    .spacer {
-        flex-grow: 1;
-        flex-basis: 0;
-    }
-
-    .logoBox {
+    nav{
+        height: 100%;
+        width: 100%;
         display: flex;
-        align-items: center;
+        background: rgba(0, 0, 0, 0.35);
 
-        img {
-            margin-left: 10px;
-        }
-    }
-
-    .navBox {
-        align-items: center;
-
-        @media screen and (min-width: 992px){
-            display: flex !important;
+        .spacer {
+            flex-grow: 1;
+            flex-basis: 0;
         }
 
-        @media screen and (max-width: 991px){
-            display: none;
-            position: absolute;
-            top: 60px;
-            height: calc(100vh - 60px);
-            right: 0;
-            width: 300px;
-            flex-direction: column;
-            align-items: flex-start;
-            background: rgba(0, 0, 0, 0.9);
-        }
+        .logoBox {
+            display: flex;
+            align-items: center;
 
-        &__anchor {
-            font-family: Volkhov;
-            font-size: 20px;
-            line-height: 28px;
-            margin: 0 22px;
-            color: #FFFFFF;
-            text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.7);
-            
-            @media screen and (max-width: 991px){
-                margin: 15px 30px;
+            img {
+                margin-left: 10px;
             }
         }
-    }
 
-    .displayFlex {
-        display: flex;
-    }
-
-    .hamburgerBox {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-right: 20px;
-        
-        i {
-            color: #fff;
-            font-size: 1.5em;
-            cursor: pointer;
+        .navBox {
+            align-items: center;
 
             @media screen and (min-width: 992px){
+                display: flex !important;
+            }
+
+            @media screen and (max-width: 991px){
                 display: none;
+                position: absolute;
+                top: 60px;
+                height: calc(100vh - 60px);
+                right: 0;
+                width: 300px;
+                flex-direction: column;
+                align-items: flex-start;
+                background: rgba(0, 0, 0, 0.9);
+            }
+
+            &__anchor {
+                font-family: Volkhov;
+                font-size: 20px;
+                line-height: 28px;
+                margin: 0 22px;
+                color: #FFFFFF;
+                text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.7);
+                
+                @media screen and (max-width: 991px){
+                    margin: 15px 30px;
+                }
+            }
+        }
+
+        .displayFlex {
+            display: flex;
+        }
+
+        .hamburgerBox {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 20px;
+            
+            i {
+                color: #fff;
+                font-size: 1.5em;
+                cursor: pointer;
+
+                @media screen and (min-width: 992px){
+                    display: none;
+                }
             }
         }
     }

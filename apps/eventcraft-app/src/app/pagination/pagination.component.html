@@ -1,0 +1,4 @@
+<ol class="numberList">
+  <li *ngFor="let pageNumber of pageNumbers" [ngClass]="[ pageNumber === activePage ? 'active' : '']"
+    (click)="changePage(pageNumber)"> {{ pageNumber }} </li>
+</ol>
