@@ -1,0 +1,30 @@
+:host {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .numberList {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    color: #989898;
+
+    li {
+      margin: 0 4px;
+
+      &:hover {
+        cursor: pointer;
+        color: #fff;
+        font-size: 900;
+      }
+    }
+
+    .active {
+      color: #fff;
+      font-size: 900;
+    }
+  }
+}

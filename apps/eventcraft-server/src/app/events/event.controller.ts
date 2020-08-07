@@ -6,6 +6,7 @@ import {
 	Param,
 	Patch,
 	Delete,
+	Query
 } from '@nestjs/common';
 import { EventService } from './event.service';
 import { Event } from './event.model';
@@ -16,20 +17,28 @@ export class EventsController {
 
 	@Post()
 	async addEvent(@Body() events: Event[]) {
-		const generatedEvents = await this.eventService.insertEvent(events);
-		return generatedEvents;
+		return await this.eventService.insertEvent(events);
 	}
 
 	@Get()
 	async getAllEvents() {
-		const events = await this.eventService.getEvents()
-		return events;
+		return await this.eventService.getEvents()
+	}
+
+	@Get('history')
+	async getPage(
+		@Query('pageNumber') pageNumber,
+		@Query('amountOfResults') amountOfResults
+	) {
+		return await this.eventService.getPage(parseInt(pageNumber), parseInt(amountOfResults));
 	}
 
 	@Get(':id')
-	getEvent(@Param('id') prodId: string) {
-		return this.eventService.getSingleEvent(prodId);
+	getEvent(@Param('id') id) {
+		return this.eventService.getSingleEvent(id);
 	}
+
+
 
 	@Patch(':id')
 	async updateEvent(@Body() event: Event) {
