@@ -1,0 +1,20 @@
+<div class="eventView">
+  <div class="eventView__imageBox">
+    <img src="{{ event.imageUrl }}" alt="">
+  </div>
+  <div class="eventView__body">
+    <h2 class="eventView__title">{{ event.name }}</h2>
+    <span class="eventView__details">Localization: {{ event.localization.city }}</span>
+    <span class="eventView__details">Start At: {{ event.startAt | date: 'short' }}</span>
+    <span class="eventView__details">End At: {{ event.endAt | date: 'short' }}</span>
+  </div>
+  <div class="eventView__footer">
+    <a [routerLink]="['/event', event._id]" routerLinkActive="active">
+      <button pButton type="button" label="View"></button>
+    </a>
+    <a [routerLink]="['/event/edit', event._id]" routerLinkActive="active">
+      <button pButton type="button" label="Edit"></button>
+    </a>
+    <button pButton type="button" label="Remove" (click)="removeEvent(event._id)"></button>
+  </div>
+</div>
