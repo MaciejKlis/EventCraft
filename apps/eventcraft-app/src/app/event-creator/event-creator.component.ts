@@ -21,8 +21,6 @@ export class EventCreatorComponent {
 
   event: Event;
 
-  private actionSubscription: Subscription;
-
   updatedEvent(event) {
     this.event = event;
     this.createEvent();
@@ -31,20 +29,16 @@ export class EventCreatorComponent {
   createEvent() {
     this.store.dispatch(
       new CreateEvents([this.event])
-    )
+    ).subscribe(() => this.router.navigateByUrl('search'));
   }
 
   createRandom(amountOfElements: number) {
     let eventsArr = [];
 
-    for (let i = 0; i < amountOfElements; i++) {
-      eventsArr[i] = EventFactory.create();
-    }
+    for (let i = 0; i < amountOfElements; i++) eventsArr[i] = EventFactory.create();
 
     this.store.dispatch(
       new CreateEvents(eventsArr)
-    ).subscribe(events => {
-      events.length === 1 ? this.router.navigateByUrl('/event/' + events[0]._id) : this.router.navigateByUrl('search');
-    })
+    ).subscribe(() => this.router.navigateByUrl('search'));
   }
 }

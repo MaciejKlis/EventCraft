@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'event/edit/:id',
     component: SingleEventEditComponent
   },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];
 
 @NgModule({

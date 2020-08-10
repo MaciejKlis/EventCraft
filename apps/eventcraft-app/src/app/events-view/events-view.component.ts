@@ -4,7 +4,6 @@ import { RemoveEvent, ReorderByCreateTime } from '../state/event/event.actions';
 import { Observable, Subscription } from 'rxjs';
 import { EventState } from '../state/event/event.state';
 import { Event } from '../state/event/event.model';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-events-view',
@@ -12,8 +11,6 @@ import { ButtonModule } from 'primeng/button';
   styleUrls: ['./events-view.component.scss']
 })
 export class EventsViewComponent implements OnInit, OnDestroy {
-  eventName: string = '';
-
   @Select(EventState.events) events$: Observable<Event[]>;
 
   event$ = this.store.select(state => state.events.events)
@@ -27,9 +24,6 @@ export class EventsViewComponent implements OnInit, OnDestroy {
 
   selectedOrder: string
 
-
-  private eventSubscription: Subscription;
-
   searchByTitle(inputValue: string): void {
     this.event$ = this.store.select(EventState.nameFilter(inputValue))
   }
@@ -38,15 +32,7 @@ export class EventsViewComponent implements OnInit, OnDestroy {
     this.store.dispatch(new ReorderByCreateTime(order))
   }
 
-  ngOnInit() {
-    this.eventSubscription = this.events$.subscribe();
-  }
+  ngOnInit() { }
 
-  removeEvent(idEvent: string) {
-    this.store.dispatch(new RemoveEvent(idEvent))
-  }
-
-  ngOnDestroy() {
-    this.eventSubscription.unsubscribe();
-  }
+  ngOnDestroy() { }
 }

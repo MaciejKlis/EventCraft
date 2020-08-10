@@ -29,6 +29,7 @@ import { EventFormComponent } from './event-form/event-form.component';
 import { MapViewComponent } from './map-view/map-view.component';
 import { HistoryOfEventsComponent } from './history-of-events/history-of-events.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { EventCardComponent } from './event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     EventFormComponent,
     MapViewComponent,
     HistoryOfEventsComponent,
-    PaginationComponent
+    PaginationComponent,
+    EventCardComponent
   ],
   imports: [
     AppRoutingModule,
